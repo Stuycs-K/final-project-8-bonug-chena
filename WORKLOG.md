@@ -1,8 +1,8 @@
 # Work Log
 
-## GROUP MEMBER 1
+## Giridhar Bonu
 
-### date x
+### May 22
 
 info
 
@@ -11,11 +11,11 @@ info
 info
 
 
-## GROUP MEMBER 2
+## Alena Chen
 
-### date x
+### May 22
 
-info
+worked on mineMaker method that randomly creates a certain number of mines on the board.
 
 ### date y
 
