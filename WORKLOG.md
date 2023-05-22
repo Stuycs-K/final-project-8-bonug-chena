@@ -15,7 +15,8 @@ info
 
 ### May 22
 
-worked on mineMaker method that randomly creates a certain number of mines on the board.
+CLASS: worked on mineMaker method that randomly creates a certain number of mines on the board.
+HOME: added Tile class and created a board of random tiles, also worked on draw method that draws map on screen
 
 ### date y
 
