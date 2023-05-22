@@ -3,18 +3,19 @@ static final int SQUARE_SIZE = 20;
 
 void setup(){
   size(800,800);
-  grid();
-  mineMaker();
+  Board();
+  //grid();
+  //mineMaker();
 }
 
-  void  mineMaker(){
-    for (int i = 0; i < width; i ++){
-      for (int j = 0; j < height; j++){
-        int random = (int) Math.random();
-        if (random <= .3){  
-          //flagMine();
-        }
-}
+//  public void mineMaker(){
+//    for (int i = 0; i < width; i ++){
+//      for (int j = 0; j < height; j++){
+//        int random = (int) Math.random();
+//        if (random <= .3){  
+
+//        }
+//  }
 
 
   public void Board() {
