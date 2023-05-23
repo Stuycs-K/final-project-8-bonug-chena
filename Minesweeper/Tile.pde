@@ -2,6 +2,7 @@ public class Tile{
   private boolean HIDDEN; 
   private boolean MINE = false; 
   private boolean FLAG; 
+  private int SURROUND;
   //public static final int MINE = 1; 
   //private static final int FLAG = 2;
   //private static final int NUMBER = 3;
@@ -23,4 +24,5 @@ public class Tile{
   public boolean getMine(){
     return MINE;
   }
+  
 }
