@@ -4,7 +4,7 @@
 
 ### May 22
 
-info
+started working on mineCounter method that checks how many mines are around and assigns a square a number
 
 ### date y
 
