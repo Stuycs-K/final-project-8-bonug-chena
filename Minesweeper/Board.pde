@@ -12,17 +12,17 @@ public class Board{
   //}
   
   
-    public void numberCalculator(int[][] map, int row, int col){
-        if(map[row][col] == EMPTY){
-          if(row == 0 && col == 0){// top left corner
+    //public void numberCalculator(int[][] map, int row, int col){
+    //    if(map[row][col] == EMPTY){
+    //      if(row == 0 && col == 0){// top left corner
             
-          }
-        }
-          if(row == 0 && col == map[row].length-1) //bottom left corner
-          if(row == map.length-1 && col == 0) // top right corner
-          if(row == map.length-1 && col == map[row].length-1) //bottom right corner
+    //      }
+    //    }
+    //      if(row == 0 && col == map[row].length-1) //bottom left corner
+    //      if(row == map.length-1 && col == 0) // top right corner
+    //      if(row == map.length-1 && col == map[row].length-1) //bottom right corner
           
-        }
+    //    }
 
   
 //  public void  mineMaker(){
