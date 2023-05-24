@@ -18,4 +18,8 @@ public class Tile{
     return MINE;
   }
   
+  public boolean getHidden(){
+    return HIDDEN;
+  }
+  
 }

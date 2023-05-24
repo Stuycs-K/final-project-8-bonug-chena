@@ -7,6 +7,7 @@ static final int SQUARE_SIZE = 100;
 void setup(){
   size(800,800);
   Board();
+  //test();
 }
 
 
@@ -46,15 +47,21 @@ public String test(){
   
 void draw(){
   grid();
+  //noLoop();
 }
 
+void mousePressed(){
+  int x = (int)mouseX;
+  int y = mouseY;
+  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
+  redraw();
+}
 
 public void makeSquare(int x, int y, int col){
   fill(col);
   stroke(0);
-  square(x, y, 20);
+  square(x, y, SQUARE_SIZE);
 }
-
   
 public void grid(){
   for(int x = 0; x < width; x += SQUARE_SIZE){
@@ -62,6 +69,9 @@ public void grid(){
       int col = 250;
       if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getMine()){
         col = 100;
+      }
+      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
+        col = 175;
       }
         makeSquare(x,y,col);
     }
