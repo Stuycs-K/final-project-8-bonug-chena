@@ -1,7 +1,8 @@
 public class Tile{
   private boolean HIDDEN; 
-  private boolean MINE = false; 
+  private boolean MINE; 
   private boolean FLAG; 
+  private int NEIGHBORS;
   //public static final int MINE = 1; 
   //private static final int FLAG = 2;
   //private static final int NUMBER = 3;
@@ -20,7 +21,12 @@ public class Tile{
     HIDDEN = true;
   }
   
-  public boolean getMine(){
+  public boolean hasMine(){
     return MINE;
   }
+  
+  public void setNeighbors(int neighbors){
+  NEIGHBORS = neighbors;
+  }
+  
 }
