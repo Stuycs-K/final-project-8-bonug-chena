@@ -16,7 +16,7 @@ public String test(){
   boolean[][] map = new boolean[mineMap.length][mineMap.length];
   for (int i = 0; i < mineMap.length; i++){
     for (int j = 0; j < mineMap[i].length; j ++){
-        map[i][j] = mineMap[i][j].getMine();
+        map[i][j] = mineMap[i][j].hasMine();
     }
     ans += Arrays.toString(map[i]) + " ";
     System.out.println(Arrays.toString(map[i]));
@@ -47,14 +47,23 @@ public String test(){
   
 void draw(){
   grid();
-  //noLoop();
 }
 
-void mousePressed(){
+void keyPressed(){
+  grid();
+}
+
+
+
+void mouseClicked(){
   int x = (int)mouseX;
   int y = mouseY;
   mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
   redraw();
+  if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
+    end();
+    noLoop();
+  }
 }
 
 public void makeSquare(int x, int y, int col){
@@ -67,7 +76,7 @@ public void grid(){
   for(int x = 0; x < width; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
-      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getMine()){
+      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].hasMine()){
         col = 100;
       }
       if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
@@ -76,4 +85,14 @@ public void grid(){
         makeSquare(x,y,col);
     }
   }
+}
+
+public String end(){
+  fill(225);
+  stroke(0);
+  square(0, 0, width);
+  textSize(128);
+  fill(0, 0, 0);
+  text("Game over.", 100, 360);
+  return "Game over";
 }
