@@ -22,3 +22,5 @@ HOME: added Tile class and created a board of random tiles, also worked on draw 
 ### May 23
 
 CLASS: worked more on draw/grid method that draws grid of map on the screen based on what the tile is
+
+HOME: I got the draw/gird method to work! It now differentiates between a safe spot and a mine. 
