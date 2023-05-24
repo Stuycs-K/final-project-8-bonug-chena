@@ -2,22 +2,23 @@
 import java.util.Arrays;
 
 private Tile[][] mineMap;
-static final int SQUARE_SIZE = 40;
+static final int SQUARE_SIZE = 100;
 
 void setup(){
   size(800,800);
   Board();
-  //test();
-  System.out.println(Arrays.toString(test()));
 }
 
 
-public boolean[][] test(){
-  boolean[][] ans = new boolean[mineMap.length][mineMap.length];
+public String test(){
+  String ans = "";
+  boolean[][] map = new boolean[mineMap.length][mineMap.length];
   for (int i = 0; i < mineMap.length; i++){
     for (int j = 0; j < mineMap[i].length; j ++){
-        ans[i][j] = mineMap[i][j].getMine();
+        map[i][j] = mineMap[i][j].getMine();
     }
+    ans += Arrays.toString(map[i]) + " ";
+    System.out.println(Arrays.toString(map[i]));
   }
   return ans;
 }
@@ -44,21 +45,6 @@ public boolean[][] test(){
   //}
   
 void draw(){
-//  for (int i = 0; i < mineMap.length ; i++){
-//    for (int j = 0; j < mineMap.length; j ++){
-//      if (mineMap[i][j].getMine()){
-//        //fill (255,0,0);
-//        makeSquare(i,j, 255);
-        
-//      }
-//      else {
-//         makeSquare(i,j, 0);
-//        //fill (250); // white
-//      }
-//      //stroke(0);
-//      //square(i,j,SQUARE_SIZE);
-//    }
-//  }
   grid();
 }
 
@@ -66,19 +52,18 @@ void draw(){
 public void makeSquare(int x, int y, int col){
   fill(col);
   stroke(0);
-  square(x, y, SQUARE_SIZE);
+  square(x, y, 20);
 }
 
   
 public void grid(){
   for(int x = 0; x < width; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
-      if (mineMap[X/SQUARE_SIZE][y/SQUARE_SIZE].getMine()){
-         makeSquare(x,y,100);
+      int col = 250;
+      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getMine()){
+        col = 100;
       }
-      else {
-         makeSquare(x,y,250);
-      }
+        makeSquare(x,y,col);
     }
   }
 }
