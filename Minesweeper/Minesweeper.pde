@@ -43,7 +43,7 @@ void setup(){
 void draw(){
   for (int i = 0; i < mineMap.length ; i++){
     for (int j = 0; j < mineMap.length; j ++){
-      if (mineMap[i][j].getMine()){
+      if (mineMap[i][j].hasMine()){
         fill (255,0,0);
       }
       else {
