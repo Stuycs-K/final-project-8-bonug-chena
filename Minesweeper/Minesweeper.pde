@@ -8,7 +8,6 @@ static final int SQUARE_SIZE = 100;
 void setup(){
   size(800,800);
   Board();
-  //test();
 }
 
 
@@ -35,31 +34,32 @@ public String test(){
     }
   }
   
-void draw(){
-  grid();
-}
-
 void keyPressed(){
   Board();
   grid();
 }
 
+  
+void draw(){
+  grid();
+}
 
 
 void mouseClicked(){
   int x = mouseX;
   int y = mouseY;
-  if (END == true){
-    Board();
-    grid();
-  }
+  //if (END == true){
+  //  Board();
+  //  grid();
+  //}
   mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
-  redraw();
+  //redraw();
   if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
     END = true;
     end();
     noLoop();
   }
+  redraw();
 }
 
 public void makeSquare(int x, int y, int col){
@@ -83,13 +83,13 @@ public void grid(){
   }
 }
 
-public String end(){
+public void end(){
   //END = true;
   fill(225);
   stroke(0);
   square(0, 0, width);
   textSize(128);
   fill(0, 0, 0);
+  END = false;
   text("Game over.", 100, 360);
-  return "Game over";
 }
