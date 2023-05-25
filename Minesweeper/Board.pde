@@ -42,7 +42,11 @@ public class Board{
       }
     }
   }
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> 94aa9a4 (wrote my neighbor checker. must test the neighbors with working mine generator)
   public int surroundingMines(int row, int col){
     int neighbors = 0;
     if(row == 0 && col == 0){ //left top corner
@@ -63,7 +67,6 @@ public class Board{
       if(mineMap[row-1][col-1].hasMine())neighbors++;
       return neighbors;
     }
-
     if(row == mineMap.length-1 && col == 0){//top right corner
       if(mineMap[row][col+1].hasMine())neighbors++;
       if(mineMap[row-1][col].hasMine())neighbors++;
@@ -79,6 +82,18 @@ public class Board{
     return neighbors;
   }
 
-
-
+  
+  
+  
+//  public void  mineMaker(){
+//    for (int i = 0; i < mineMap.length; i ++){
+//      for (int j = 0; j < mineMap[i].length; j++){
+//        int random = (int) Math.random();
+//        if (random <= .3){
+//          mineMap[i][j].MINE = true;
+//        }
+//      }
+//    }
+//  }
+  
 }

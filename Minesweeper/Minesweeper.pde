@@ -53,23 +53,12 @@ void setup(){
   //mineMaker();
 }
 
-<<<<<<< HEAD
 
   
 void keyPressed(){
   Board();
   grid();
 }
-=======
-//  public void mineMaker(){
-//    for (int i = 0; i < width; i ++){
-//      for (int j = 0; j < height; j++){
-//        int random = (int) Math.random();
-//        if (random <= .3){  
-
-//        }
-//  }
->>>>>>> f91a443 (fixed merge conflicts)
 
 
 void draw(){
@@ -106,6 +95,10 @@ public void grid(){
       int col = 250;
       if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].hasMine()){
         col = 100;
+  for (int i = 0; i < mineMap.length ; i++){
+    for (int j = 0; j < mineMap.length; j ++){
+      if (mineMap[i][j].hasMine()){
+        fill (255,0,0);
       }
       if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
         col = 175;

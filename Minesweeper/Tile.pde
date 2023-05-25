@@ -2,6 +2,7 @@ public class Tile{
   private boolean HIDDEN; 
   private boolean MINE; 
   private boolean FLAG; 
+  private int NEIGHBORS;
   
   public Tile(){
     double random = Math.random();
@@ -25,5 +26,7 @@ public class Tile{
   }
   
 
-  
+  public void setNeighbors(int neighbors){
+  NEIGHBORS = neighbors;
+  }
 }
