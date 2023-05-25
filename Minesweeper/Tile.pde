@@ -2,8 +2,6 @@ public class Tile{
   private boolean HIDDEN; 
   private boolean MINE; 
   private boolean FLAG; 
-  private int SURROUND;
-  public Tile tile;
   
   public Tile(){
     double random = Math.random();
