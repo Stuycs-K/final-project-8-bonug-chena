@@ -1,13 +1,17 @@
 import java.util.Arrays;
 private Tile[][] mineMap;
+private boolean END;
 static final int SQUARE_SIZE = 100;
 
 void setup(){
   size(800,800);
   Board();
+  //test();
 }
 
+
   public void Board() {
+  END = false;
   mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
   for(int x = 0; x < mineMap.length; x ++){
     for(int y = 0; y < mineMap[x].length; y++){
@@ -16,31 +20,54 @@ void setup(){
     }
   }
   
-  
-  
 void draw(){
   grid();
 }
 
+void keyPressed(){
+  Board();
+  grid();
+}
+
+
+
+void mouseClicked(){
+  int x = mouseX;
+  int y = mouseY;
+  if (END == true){
+    Board();
+    grid();
+  }
+  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
+  redraw();
+  if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
+    END = true;
+    end();
+    noLoop();
+  }
+}
 
 public void makeSquare(int x, int y, int col){
   fill(col);
   stroke(0);
-  square(x, y, 20);
+  square(x, y, SQUARE_SIZE);
 }
-
   
 public void grid(){
   for(int x = 0; x < width; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
-      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getMine()){
+      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].hasMine()){
         col = 100;
+      }
+      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
+        col = 175;
       }
         makeSquare(x,y,col);
     }
   }
 }
+
 
 //public String test(){
 //  String ans = "";
@@ -54,3 +81,14 @@ public void grid(){
 //  }
 //  return ans;
 //}
+
+public String end(){
+  //END = true;
+  fill(225);
+  stroke(0);
+  square(0, 0, width);
+  textSize(128);
+  fill(0, 0, 0);
+  text("Game over.", 100, 360);
+  return "Game over";
+}
