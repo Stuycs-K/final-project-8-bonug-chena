@@ -32,9 +32,13 @@ HOME: added Tile class and created a board of random tiles, also worked on draw 
 ### May 23
 
 CLASS: worked more on draw/grid method that draws grid of map on the screen based on what the tile is
-HOME: I got the draw/gird method to work! It now differentiates between a safe spot and a mine.
+HOME: I got the draw/grid method to work! It now differentiates between a safe spot and a mine.
 
 ### May 24
 
 CLASS: worked on mouseclicked method where if you click on a square, it changes color and if you click on a mine, the game ends.
 HOME: added to mouseclicked method so that if you click on the screen again after you lose, a new map is shown
+
+## May 25
+
+fixed a bunch of merge conflicts, tried to move some of the stuff in minesweeper to board so that board methods would work
