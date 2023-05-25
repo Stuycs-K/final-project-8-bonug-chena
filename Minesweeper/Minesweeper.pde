@@ -18,7 +18,7 @@ void setup(){
 //    for (int i = 0; i < width; i ++){
 //      for (int j = 0; j < height; j++){
 //        int random = (int) Math.random();
-//        if (random <= .3){  
+//        if (random <= .3){
 
 //        }
 //  }
@@ -51,7 +51,7 @@ void keyPressed(){
   grid();
 }
 
-  
+
 void draw(){
   grid();
 }
