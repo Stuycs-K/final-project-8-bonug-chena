@@ -2,14 +2,15 @@ public class Board{
   private Tile[][] mineMap;
   static final int SQUARE_SIZE = 20;
 
-public Board() {
-mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
-for(int x = 0; x < mineMap.length; x ++){
-  for(int y = 0; y < mineMap[x].length; y++){
-      mineMap[x][y] = new Tile();
+ public Board() {
+  END = false;
+  mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
+  for(int x = 0; x < mineMap.length; x ++){
+    for(int y = 0; y < mineMap[x].length; y++){
+        mineMap[x][y] = new Tile();
+      }
     }
   }
-}
   public void numSet(){
     for(int row = 0; row <  mineMap.length; row++){
       for(int col = 0; col< mineMap[row].length; col++){
@@ -56,6 +57,10 @@ for(int x = 0; x < mineMap.length; x ++){
     return neighbors;
   }
 
+
+  public Tile getTile(int x, int y){
+    return mineMap[x][y];
+  }
 
 
 
