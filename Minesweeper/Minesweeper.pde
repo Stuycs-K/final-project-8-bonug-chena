@@ -10,6 +10,18 @@ void setup(){
   Board();
 }
 
+  //grid();
+  //mineMaker();
+
+
+//  public void mineMaker(){
+//    for (int i = 0; i < width; i ++){
+//      for (int j = 0; j < height; j++){
+//        int random = (int) Math.random();
+//        if (random <= .3){  
+
+//        }
+//  }
 
 public String test(){
   String ans = "";
