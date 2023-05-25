@@ -70,7 +70,7 @@ public void grid(){
         col = 100;
       }
       if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
-        col = 175;
+        col = 175; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
       }
         makeSquare(x,y,col);
     }
