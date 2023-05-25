@@ -1,7 +1,7 @@
 public class Board{
   private Tile[][] mineMap;
   static final int SQUARE_SIZE = 20;
-  
+
   //public Board() {
   //mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
   //for(int x = 0; x < 39; x += SQUARE_SIZE){
@@ -19,7 +19,7 @@ public class Board{
       }
     }
   }
-  
+
   public int surroundingMines(int row, int col){
     int neighbors = 0;
     if(row == 0 && col == 0){ //left top corner
@@ -40,7 +40,7 @@ public class Board{
       if(mineMap[row-1][col-1].hasMine())neighbors++;
       return neighbors;
     }
-    
+
     if(row == mineMap.length-1 && col == 0){//top right corner
       if(mineMap[row][col+1].hasMine())neighbors++;
       if(mineMap[row-1][col].hasMine())neighbors++;
@@ -55,10 +55,10 @@ public class Board{
     }
     return neighbors;
   }
-  
-  
-  
-  
+
+
+
+
 //  public void  mineMaker(){
 //    for (int i = 0; i < mineMap.length; i ++){
 //      for (int j = 0; j < mineMap[i].length; j++){
@@ -69,5 +69,5 @@ public class Board{
 //      }
 //    }
 //  }
-  
+
 }

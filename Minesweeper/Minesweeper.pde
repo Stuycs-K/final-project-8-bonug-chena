@@ -12,7 +12,7 @@ void setup(){
 //    for (int i = 0; i < width; i ++){
 //      for (int j = 0; j < height; j++){
 //        int random = (int) Math.random();
-//        if (random <= .3){  
+//        if (random <= .3){
 
 //        }
 //  }
@@ -26,9 +26,9 @@ void setup(){
       }
     }
   }
-  
 
-  
+
+
 //void grid() {
 //  for(int x = 0; x < width; x += SQUARE_SIZE) {
 //    for(int y = 0; y < height; y += SQUARE_SIZE) {
@@ -38,8 +38,8 @@ void setup(){
 //    }
 //  }
 //}
-  
-  
+
+
 void draw(){
   for (int i = 0; i < mineMap.length ; i++){
     for (int j = 0; j < mineMap.length; j ++){
