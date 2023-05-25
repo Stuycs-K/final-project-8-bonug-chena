@@ -1,3 +1,4 @@
+
 //private Board board;
 import java.util.Arrays;
 
@@ -42,9 +43,16 @@ public String test(){
   for(int x = 0; x < mineMap.length; x ++){
     for(int y = 0; y < mineMap[x].length; y++){
         mineMap[x][y] = new Tile();
-      }
-    }
-  }
+
+
+
+void setup(){
+  size(800,800);
+  grid();
+  mineMaker();
+}
+
+
   
 void keyPressed(){
   Board();
@@ -104,4 +112,15 @@ public void end(){
   fill(0, 0, 0);
   END = false;
   text("Game over.", 100, 360);
+}
+
+  
+void grid() {
+  for(int x = 0; x < width; x += SQUARE_SIZE) {
+    for(int y = 0; y < height; y += SQUARE_SIZE) {
+      fill(250);
+      stroke(0);
+      square(x,y,SQUARE_SIZE);
+    }
+  }
 }
