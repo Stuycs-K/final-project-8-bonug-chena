@@ -28,3 +28,4 @@ HOME: I got the draw/gird method to work! It now differentiates between a safe s
 ### May 24
 
 CLASS: worked on mouseclicked method where if you click on a square, it changes color and if you click on a mine, the game ends.
+HOME: added to mouseclicked method so that if you click on the screen again after you lose, a new map is shown
