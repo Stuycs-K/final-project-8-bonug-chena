@@ -16,6 +16,10 @@ finished writing the count method and helper. trying to merge
 
 info
 
+## May 25
+merge conflicts resolved. started working on displaying the numbers and flags when a square is clicked.
+
+
 
 ## Alena Chen
 
