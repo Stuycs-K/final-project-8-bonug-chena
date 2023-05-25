@@ -48,16 +48,28 @@ public String test(){
 
 void setup(){
   size(800,800);
-  grid();
-  mineMaker();
+  Board();
+  //grid();
+  //mineMaker();
 }
 
+<<<<<<< HEAD
 
   
 void keyPressed(){
   Board();
   grid();
 }
+=======
+//  public void mineMaker(){
+//    for (int i = 0; i < width; i ++){
+//      for (int j = 0; j < height; j++){
+//        int random = (int) Math.random();
+//        if (random <= .3){  
+
+//        }
+//  }
+>>>>>>> f91a443 (fixed merge conflicts)
 
 
 void draw(){
