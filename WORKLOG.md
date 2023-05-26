@@ -46,3 +46,7 @@ HOME: added to mouseclicked method so that if you click on the screen again afte
 CLASS: fixed a bunch of merge conflicts, tried to move some of the stuff in minesweeper to board so that board methods would work
 
 HOME: added flag methods and flag button where when flag button is pressed and a tile is clicked, a flag is placed on the tile
+
+## May 26
+
+CLASS: Helped Giridhar debug his code, worked more on adding flag methods to code.
