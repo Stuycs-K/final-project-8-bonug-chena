@@ -1,5 +1,5 @@
 import java.util.Arrays;
-private Tile[][] mineMap;
+private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
 
@@ -9,34 +9,26 @@ void setup(){
   //test();
 }
 
-//  public void mineMaker(){
-//    for (int i = 0; i < width; i ++){
-//      for (int j = 0; j < height; j++){
-//        int random = (int) Math.random();
-//        if (random <= .3){
-
-//        }
-//  }
-
-
   public void Board() {
   END = false;
-  mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
+  /*mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
   for(int x = 0; x < mineMap.length; x ++){
     for(int y = 0; y < mineMap[x].length; y++){
         mineMap[x][y] = new Tile();
       }
     }
+    */
+    mineMap = new Board();
   }
 
 void draw(){
   grid();
 }
 
-void keyPressed(){
-  Board();
-  grid();
-}
+//void keyPressed(){
+//  Board();
+//  grid();
+//}
 
 
 
@@ -47,12 +39,12 @@ void mouseClicked(){
     Board();
     grid();
   }
-  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
+  mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
   redraw();
-  if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
+  if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
     END = true;
     end();
-    noLoop();
+    //noLoop();
   }
 }
 
@@ -63,16 +55,19 @@ public void makeSquare(int x, int y, int col){
 }
 
 public void grid(){
+  END = false;
   for(int x = 0; x < width; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
-      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].hasMine()){
+      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
         col = 100;
       }
-      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
-        col = 175;
+      if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()){
+        col = 0; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
       }
         makeSquare(x,y,col);
+        fill(0);
+        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE ).getNeighbors()), x+50, y+50);
     }
   }
 }
