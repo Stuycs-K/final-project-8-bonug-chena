@@ -1,6 +1,6 @@
 public class Board{
   private Tile[][] mineMap;
-  static final int SQUARE_SIZE = 20;
+  static final int SQUARE_SIZE = 100;
 
 public Board() {
 mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
@@ -9,6 +9,7 @@ for(int x = 0; x < mineMap.length; x ++){
       mineMap[x][y] = new Tile();
     }
   }
+  numSet();
 }
   public void numSet(){
     for(int row = 0; row <  mineMap.length; row++){
@@ -56,7 +57,9 @@ for(int x = 0; x < mineMap.length; x ++){
     return neighbors;
   }
 
-
+  public Tile getTile(int row, int col){
+    return mineMap[row][col];
+  }
 
 
 //  public void  mineMaker(){
