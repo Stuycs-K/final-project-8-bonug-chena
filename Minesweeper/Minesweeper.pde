@@ -116,6 +116,6 @@ public String end(){
   square(0, 0, width);
   textSize(128);
   fill(0, 0, 0);
-  text("Game over.", 100, 360);
+  text("Game over.", 175, 360);
   return "Game over";
 }
