@@ -2,10 +2,13 @@ import java.util.Arrays;
 private Tile[][] mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
+boolean FLAGPRESSED;
+PImage img;
 
 void setup(){
-  size(800,800);
+  size(950 ,800);
   Board();
+  img = loadImage("flag.png");
   //test();
 }
 
@@ -18,9 +21,14 @@ void setup(){
       }
     }
   }
+  
+  void placeFlag(int x, int y){
+      image(img, x+1, y +1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
 
 void draw(){
   grid();
+  flagButton();
 }
 
 void keyPressed(){
@@ -33,16 +41,28 @@ void keyPressed(){
 void mouseClicked(){
   int x = mouseX;
   int y = mouseY;
+  if (x<925 && x > 825 && y > 50 && y < 150){
+    FLAGPRESSED = !FLAGPRESSED;
+    System.out.println(FLAGPRESSED);
+  }
+  else if (x <= 800){
   if (END == true){
     Board();
     grid();
   }
   mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
   redraw();
+  //if (FLAGPRESSED){
+  //  placeFlag(x,y);
+  //}
   if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
     END = true;
     end();
     noLoop();
+  }
+  if (FLAGPRESSED){
+    placeFlag(x,y);
+  }
   }
 }
 
@@ -53,7 +73,7 @@ public void makeSquare(int x, int y, int col){
 }
 
 public void grid(){
-  for(int x = 0; x < width; x += SQUARE_SIZE){
+  for(int x = 0; x < width-150; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
       if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].hasMine()){
@@ -65,6 +85,14 @@ public void grid(){
         makeSquare(x,y,col);
     }
   }
+}
+
+void flagButton(){
+  makeSquare(825, 50,0);
+  image(img, 826,51,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  textSize(22);
+  fill(0, 0, 0);
+  text("Flag placer", 825, 170);
 }
 
 
