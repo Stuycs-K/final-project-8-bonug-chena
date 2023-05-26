@@ -29,7 +29,7 @@ for(int x = 0; x < mineMap.length; x ++){
       if(mineMap[row+1][col+1].hasMine())neighbors++;
       return neighbors;
     }
-    if(row == 0 && col == mineMap[row].length -1){//bottom left corner
+    if(row == 0 && col == mineMap[col].length -1){//bottom left corner
       if(mineMap[row][col-1].hasMine())neighbors++;
       if(mineMap[row+1][col].hasMine())neighbors++;
       if(mineMap[row+1][col-1].hasMine())neighbors++;
@@ -82,7 +82,7 @@ for(int x = 0; x < mineMap.length; x ++){
     }
     for(int i = -1; i <=1; i ++){
       for(int j = -1; j <= 1; j++){
-        if(j == 0 && i ==0){}
+        //if(j == 0 && i ==0){}
         if(mineMap[row+i][col+j].hasMine())neighbors++;
       }
     }

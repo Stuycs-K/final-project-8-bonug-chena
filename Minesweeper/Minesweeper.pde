@@ -35,10 +35,10 @@ void draw(){
   grid();
 }
 
-void keyPressed(){
-  Board();
-  grid();
-}
+//void keyPressed(){
+//  Board();
+//  grid();
+//}
 
 
 
@@ -54,7 +54,7 @@ void mouseClicked(){
   if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
     END = true;
     end();
-    noLoop();
+    //noLoop();
   }
 }
 
@@ -65,6 +65,7 @@ public void makeSquare(int x, int y, int col){
 }
 
 public void grid(){
+  END = false;
   for(int x = 0; x < width; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
@@ -75,8 +76,8 @@ public void grid(){
         col = 0; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
       }
         makeSquare(x,y,col);
-        fill(255);
-        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), x, y);
+        fill(0);
+        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE ).getNeighbors()), x+50, y+50);
     }
   }
 }
