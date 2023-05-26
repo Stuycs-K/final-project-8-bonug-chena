@@ -19,7 +19,8 @@ info
 ## May 25
 merge conflicts resolved. started working on displaying the numbers and flags when a square is clicked.
 
-
+## May 26
+finished and merged the working number display onto the main branch. trying to change it so that numbers display only when dug
 
 ## Alena Chen
 
