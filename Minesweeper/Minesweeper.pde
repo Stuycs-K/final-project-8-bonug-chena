@@ -9,16 +9,6 @@ void setup(){
   //test();
 }
 
-//  public void mineMaker(){
-//    for (int i = 0; i < width; i ++){
-//      for (int j = 0; j < height; j++){
-//        int random = (int) Math.random();
-//        if (random <= .3){
-
-//        }
-//  }
-
-
   public void Board() {
   END = false;
   /*mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
