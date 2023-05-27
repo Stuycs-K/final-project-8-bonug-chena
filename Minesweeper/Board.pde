@@ -82,10 +82,6 @@ for(int x = 0; x < mineMap.length; x ++){
     }
     for(int i = -1; i <=1; i ++){
       for(int j = -1; j <= 1; j++){
-<<<<<<< HEAD
-=======
-        //if(j == 0 && i ==0){}
->>>>>>> 6c9f78a (the numbers are being displayed properly. it was just because of offset axis, not index)
         if(mineMap[row+i][col+j].hasMine())neighbors++;
       }
     }
