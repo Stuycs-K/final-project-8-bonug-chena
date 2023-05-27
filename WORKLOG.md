@@ -47,3 +47,8 @@ HOME: added to mouseclicked method so that if you click on the screen again afte
 CLASS: fixed a bunch of merge conflicts, tried to move some of the stuff in minesweeper to board so that board methods would work
 
 HOME: added flag methods and flag button where when flag button is pressed and a tile is clicked, a flag is placed on the tile
+
+## May 26
+Helped Giridhar debug his code so that the correct number of surrounding mines appear. Fixed merge conflicts.
+
+Got the flag methods to work for the most part and added a new game button 
