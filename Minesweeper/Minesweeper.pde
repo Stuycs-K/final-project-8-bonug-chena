@@ -11,6 +11,7 @@ void setup() {
   Board();
   grid();
   img = loadImage("flag.png");
+<<<<<<< HEAD
 }
 
 void draw() {
@@ -33,6 +34,66 @@ public void Board() {
     for (int y = 0; y < mineMap[x].length; y++) {
       mineMap[x][y] = new Tile();
     }
+=======
+}
+
+void draw(){
+  grid();
+  flagButton();
+}
+
+  public void Board() {
+  END = false;
+  mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
+  for(int x = 0; x < mineMap.length; x ++){
+    for(int y = 0; y < mineMap[x].length; y++){
+        mineMap[x][y] = new Tile();
+      }
+    }
+  }
+  
+  void placeFlag(int x, int y){
+      image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
+  
+  int corner(int x){
+    return x/SQUARE_SIZE * SQUARE_SIZE;
+  }
+
+
+//void keyPressed(){
+//  Board();
+//  grid();
+//}
+
+
+
+void mouseClicked(){
+  int x = mouseX;
+  int y = mouseY;
+  if (x<925 && x > 825 && y > 50 && y < 150){
+    FLAGPRESSED = !FLAGPRESSED;
+    System.out.println(FLAGPRESSED);
+  }
+  else if (x <= 800){
+  if (FLAGPRESSED){
+    placeFlag(x,y);
+    //noLoop();
+  }
+  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
+  redraw();
+  if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
+    END = true;
+    end();
+    noLoop();
+  }
+  if (END == true){
+    end();
+    Board();
+    grid();
+    //END = false;
+  }
+>>>>>>> ba238ca (tried to fix flag but now its broken.)
   }
 }
 
