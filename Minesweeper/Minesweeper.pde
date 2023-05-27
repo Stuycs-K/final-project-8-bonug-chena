@@ -2,10 +2,13 @@ import java.util.Arrays;
 private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
+boolean FLAGPRESSED;
+PImage img;
 
 void setup(){
-  size(800,800);
+  size(950 ,800);
   Board();
+  img = loadImage("flag.png");
   //test();
 }
 
@@ -20,9 +23,14 @@ void setup(){
     */
     mineMap = new Board();
   }
+  
+  void placeFlag(int x, int y){
+      image(img, x+1, y +1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
 
 void draw(){
   grid();
+  flagButton();
 }
 
 //void keyPressed(){
@@ -35,6 +43,11 @@ void draw(){
 void mouseClicked(){
   int x = mouseX;
   int y = mouseY;
+  if (x<925 && x > 825 && y > 50 && y < 150){
+    FLAGPRESSED = !FLAGPRESSED;
+    System.out.println(FLAGPRESSED);
+  }
+  else if (x <= 800){
   if (END == true){
     Board();
     grid();
@@ -42,9 +55,16 @@ void mouseClicked(){
   mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
   redraw();
   if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
+  //if (FLAGPRESSED){
+  //  placeFlag(x,y);
+  //}
     END = true;
     end();
     //noLoop();
+  }
+  if (FLAGPRESSED){
+    placeFlag(x,y);
+  }
   }
 }
 
@@ -56,7 +76,7 @@ public void makeSquare(int x, int y, int col){
 
 public void grid(){
   END = false;
-  for(int x = 0; x < width; x += SQUARE_SIZE){
+  for(int x = 0; x < width-150; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
@@ -72,19 +92,14 @@ public void grid(){
   }
 }
 
+void flagButton(){
+  makeSquare(825, 50,0);
+  image(img, 826,51,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  textSize(22);
+  fill(0, 0, 0);
+  text("Flag placer", 825, 170);
+}
 
-//public String test(){
-//  String ans = "";
-//  boolean[][] map = new boolean[mineMap.length][mineMap.length];
-//  for (int i = 0; i < mineMap.length; i++){
-//    for (int j = 0; j < mineMap[i].length; j ++){
-//        map[i][j] = mineMap[i][j].getMine();
-//    }
-//    ans += Arrays.toString(map[i]) + " ";
-//    System.out.println(Arrays.toString(map[i]));
-//  }
-//  return ans;
-//}
 
 public String end(){
   //END = true;
