@@ -1,5 +1,5 @@
 import java.util.Arrays;
-private Tile[][] mineMap;
+private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
 boolean NEWMAP = false;
@@ -11,7 +11,6 @@ void setup() {
   Board();
   grid();
   img = loadImage("flag.png");
-<<<<<<< HEAD
 }
 
 void draw() {
@@ -27,37 +26,28 @@ void draw() {
   }
 }
 
-public void Board() {
-  END = false;
-  mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
-  for (int x = 0; x < mineMap.length; x ++) {
-    for (int y = 0; y < mineMap[x].length; y++) {
-      mineMap[x][y] = new Tile();
-    }
-}
-
-void draw(){
-  grid();
-  flagButton();
-}
+//public void Board() {
+//  END = false;
+//  mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
+//  for (int x = 0; x < mineMap.length; x ++) {
+//    for (int y = 0; y < mineMap[x].length; y++) {
+//      mineMap[x][y] = new Tile();
+//    }
+//  }
+//}
 
   public void Board() {
   END = false;
-  mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
+  /*mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
   for(int x = 0; x < mineMap.length; x ++){
     for(int y = 0; y < mineMap[x].length; y++){
         mineMap[x][y] = new Tile();
       }
     }
+    */
+    mineMap = new Board();
   }
   
-  void placeFlag(int x, int y){
-      image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
-  }
-  
-  int corner(int x){
-    return x/SQUARE_SIZE * SQUARE_SIZE;
-  }
 
 
 //void keyPressed(){
@@ -65,35 +55,6 @@ void draw(){
 //  grid();
 //}
 
-
-
-void mouseClicked(){
-  int x = mouseX;
-  int y = mouseY;
-  if (x<925 && x > 825 && y > 50 && y < 150){
-    FLAGPRESSED = !FLAGPRESSED;
-    System.out.println(FLAGPRESSED);
-  }
-  else if (x <= 800){
-  if (FLAGPRESSED){
-    placeFlag(x,y);
-    //noLoop();
-  }
-  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
-  redraw();
-  if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
-    END = true;
-    end();
-    noLoop();
-  }
-  if (END == true){
-    end();
-    Board();
-    grid();
-    //END = false;
-  }
-  }
-}
 
 void placeFlag(int x, int y) {
   //image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
@@ -107,8 +68,8 @@ void placeFlag(int x, int y) {
   stroke(255, 49, 49);
   fill(255, 49, 49);
   triangle(corner(x)+45, corner(y)+20, corner(x)+10, corner(y)+37.5, corner(x)+45, corner(y)+55);
-  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].FLAG = true;
-  text(""+mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].FLAG,x,y);
+  mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG = true;
+  text(""+mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG,x,y);
 }
 
 int corner(int x) {
@@ -126,16 +87,16 @@ void mouseClicked() {
     System.out.println(FLAGPRESSED);
   }
   if (x <= 800) {
-    if (!FLAGPRESSED && !mineMap[y/SQUARE_SIZE][X/SQUARE_SIZE].FLAG) {
-      mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
+    if (!FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE,X/SQUARE_SIZE).FLAG) {
+      mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
       makeSquare(corner(x), corner(y), 200); //turns tile grey, reveal number here
     }
-    if (FLAGPRESSED && mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN) {
+    if (FLAGPRESSED && mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN) {
       placeFlag(x, y);
       //noLoop();
     }
     //redraw();
-    if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE && !FLAGPRESSED) {
+    if (mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).MINE && !FLAGPRESSED) {
       END = true;
       end();
       //noLoop();
@@ -161,17 +122,20 @@ public void grid() {
   for (int x = 0; x < width-150; x += SQUARE_SIZE) {
     for (int y = 0; y < height; y+= SQUARE_SIZE) {
       int col = 250;
-      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].hasMine()) {
-        col = 100;
-      }
-      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
-        col = 175; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
-    }
       makeSquare(x, y, col);
-      if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].FLAG) {
+      if (mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG) {
         placeFlag(y, x);
       }
-    }
+      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
+        col = 100;
+      }
+      if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()){
+        col = 175; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
+      }
+        makeSquare(x,y,col);
+        fill(255);
+        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), x, y);
+      }
   }
 }
 
