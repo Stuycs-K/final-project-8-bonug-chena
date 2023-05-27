@@ -2,11 +2,18 @@ import java.util.Arrays;
 private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
+boolean FLAGPRESSED;
+PImage img;
 
 void setup(){
-  size(800,800);
+  size(950 ,800);
   Board();
-  //test();
+  img = loadImage("flag.png");
+}
+
+void draw(){
+  grid();
+  flagButton();
 }
 
   public void Board() {
@@ -20,10 +27,15 @@ void setup(){
     */
     mineMap = new Board();
   }
+  
+  void placeFlag(int x, int y){
+      image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
+  
+  int corner(int x){
+    return x/SQUARE_SIZE * SQUARE_SIZE;
+  }
 
-void draw(){
-  grid();
-}
 
 //void keyPressed(){
 //  Board();
@@ -35,9 +47,14 @@ void draw(){
 void mouseClicked(){
   int x = mouseX;
   int y = mouseY;
-  if (END == true){
-    Board();
-    grid();
+  if (x<925 && x > 825 && y > 50 && y < 150){
+    FLAGPRESSED = !FLAGPRESSED;
+    System.out.println(FLAGPRESSED);
+  }
+  else if (x <= 800){
+  if (FLAGPRESSED){
+    placeFlag(x,y);
+    //noLoop();
   }
   mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
   redraw();
@@ -45,6 +62,13 @@ void mouseClicked(){
     END = true;
     end();
     //noLoop();
+  }
+  if (END == true){
+    end();
+    Board();
+    grid();
+    //END = false;
+  }
   }
 }
 
@@ -56,7 +80,7 @@ public void makeSquare(int x, int y, int col){
 
 public void grid(){
   END = false;
-  for(int x = 0; x < width; x += SQUARE_SIZE){
+  for(int x = 0; x < width-150; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
@@ -72,19 +96,14 @@ public void grid(){
   }
 }
 
+void flagButton(){
+  makeSquare(825, 50,0);
+  image(img, 826,51,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  textSize(22);
+  fill(0, 0, 0);
+  text("Flag placer", 825, 170);
+}
 
-//public String test(){
-//  String ans = "";
-//  boolean[][] map = new boolean[mineMap.length][mineMap.length];
-//  for (int i = 0; i < mineMap.length; i++){
-//    for (int j = 0; j < mineMap[i].length; j ++){
-//        map[i][j] = mineMap[i][j].getMine();
-//    }
-//    ans += Arrays.toString(map[i]) + " ";
-//    System.out.println(Arrays.toString(map[i]));
-//  }
-//  return ans;
-//}
 
 public String end(){
   //END = true;
@@ -93,6 +112,6 @@ public String end(){
   square(0, 0, width);
   textSize(128);
   fill(0, 0, 0);
-  text("Game over.", 100, 360);
+  text("Game over.", 175, 360);
   return "Game over";
 }
