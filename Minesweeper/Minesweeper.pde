@@ -12,8 +12,11 @@ void setup(){
 }
 
 void draw(){
+  Board();
   grid();
   flagButton();
+  newGameButton();
+  noLoop();
 }
 
   public void Board() {
@@ -27,7 +30,17 @@ void draw(){
   }
   
   void placeFlag(int x, int y){
-      image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+      //image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+      fill(0);
+      rect(corner(x)+25,corner(y)+75, 50, 10);
+      rect(corner(x)+45, corner(y)+55,10,25);
+      stroke(225,0,0);
+      fill(225,0,0);
+      rect(corner(x)+45, corner(y)+20,10,35);
+      stroke(255, 49, 49);
+      fill(255, 49, 49);
+      triangle(corner(x)+45, corner(y)+20, corner(x)+10, corner(y)+37.5, corner(x)+45, corner(y)+55);
+      mineMap[x/SQUARE_SIZE][Y/SQUARE_SIZE].FLAG = true; 
   }
   
   int corner(int x){
@@ -41,34 +54,43 @@ void draw(){
 //}
 
 
-
 void mouseClicked(){
   int x = mouseX;
   int y = mouseY;
-  if (x<925 && x > 825 && y > 50 && y < 150){
+  if (x<925 && x>825 && y >20 && y <70){
+    redraw();
+  }
+  if (x<925 && x > 825 && y > 100 && y < 200){
     FLAGPRESSED = !FLAGPRESSED;
     System.out.println(FLAGPRESSED);
   }
   else if (x <= 800){
   if (FLAGPRESSED){
     placeFlag(x,y);
-    //noLoop();
-  }
-  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
-  redraw();
-  if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true){
-    END = true;
-    end();
     noLoop();
   }
-  if (END == true){
-    end();
-    Board();
-    grid();
-    //END = false;
-  }
+  //mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
+  //redraw();
+  //if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true && !FLAGPRESSED){
+  //  END = true;
+  //  end();
+  //  noLoop();
+  //}
+  //if (END == true){
+  //  end();
+  //  Board();
+  //  grid();
+  //  END = false;
+  //}
   }
 }
+
+  public void newGame(){
+    Board();
+    grid();
+    flagButton();
+    newGameButton();
+  }
 
 public void makeSquare(int x, int y, int col){
   fill(col);
@@ -87,17 +109,29 @@ public void grid(){
         col = 175;
       }
         makeSquare(x,y,col);
+       if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].FLAG){
+        placeFlag(y,x);
+      }
     }
   }
 }
 
 void flagButton(){
-  makeSquare(825, 50,0);
-  image(img, 826,51,SQUARE_SIZE-1, SQUARE_SIZE-1);
-  textSize(22);
-  fill(0, 0, 0);
-  text("Flag placer", 825, 170);
+  makeSquare(825, 100,0);
+  image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  fill(0);
+  textSize(20);
+  text("Place Flags", 825, 220);
 }
+
+public void newGameButton(){
+  fill(255);
+  rect(825,20,100,50);
+  fill(0);
+  textSize(20);
+  text("New Game", 830, 50);
+}
+  
 
 
 //public String test(){
