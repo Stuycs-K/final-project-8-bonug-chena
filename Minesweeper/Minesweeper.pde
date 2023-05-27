@@ -2,6 +2,7 @@ import java.util.Arrays;
 private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
+<<<<<<< HEAD
 boolean NEWMAP = false;
 boolean FLAGPRESSED;
 PImage img;
@@ -11,6 +12,8 @@ void setup() {
   Board();
   grid();
   img = loadImage("flag.png");
+boolean FLAGPRESSED;
+PImage img;
 }
 
 void draw() {
@@ -48,7 +51,14 @@ void draw() {
     mineMap = new Board();
   }
   
+  void placeFlag(int x, int y){
+      image(img, x+1, y +1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
 
+void draw(){
+  grid();
+  flagButton();
+}
 
 //void keyPressed(){
 //  Board();
@@ -76,18 +86,20 @@ void placeFlag(int x, int y) {
 int corner(int x) {
   return x/SQUARE_SIZE * SQUARE_SIZE;
 }
-=======
-//void keyPressed(){
-//  Board();
-//  grid();
-//}
->>>>>>> 6c9f78a (the numbers are being displayed properly. it was just because of offset axis, not index)
 
 void mouseClicked() {
   int x = mouseX;
   int y = mouseY;
   if (x<925 && x>825 && y >20 && y <70) {
     NEWMAP= true;
+  if (x<925 && x > 825 && y > 50 && y < 150){
+    FLAGPRESSED = !FLAGPRESSED;
+    System.out.println(FLAGPRESSED);
+  }
+  else if (x <= 800){
+  if (END == true){
+    Board();
+    grid();
   }
 <<<<<<< HEAD
   if (x<925 && x > 825 && y > 100 && y < 200) {
@@ -115,14 +127,21 @@ void mouseClicked() {
       grid();
       END = false;
     }
-=======
-  mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
-  redraw();
-  if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
-    END = true;
-    end();
-    //noLoop();
->>>>>>> 6c9f78a (the numbers are being displayed properly. it was just because of offset axis, not index)
+//=======
+//  mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
+//  redraw();
+//  if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
+//  //if (FLAGPRESSED){
+//  //  placeFlag(x,y);
+//  //}
+//    END = true;
+//    end();
+//    //noLoop();
+//>>>>>>> 6c9f78a (the numbers are being displayed properly. it was just because of offset axis, not index)
+  }
+  if (FLAGPRESSED){
+    placeFlag(x,y);
+  }
   }
 }
 
@@ -132,18 +151,11 @@ public void makeSquare(int x, int y, int col) {
   square(x, y, SQUARE_SIZE);
 }
 
-<<<<<<< HEAD
 public void grid() {
   NEWMAP = false;
   END = false;
   for (int x = 0; x < width-150; x += SQUARE_SIZE) {
     for (int y = 0; y < height; y+= SQUARE_SIZE) {
-=======
-public void grid(){
-  END = false;
-  for(int x = 0; x < width; x += SQUARE_SIZE){
-    for(int y = 0; y < height; y+= SQUARE_SIZE){
->>>>>>> 6c9f78a (the numbers are being displayed properly. it was just because of offset axis, not index)
       int col = 250;
       makeSquare(x, y, col);
       if (mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG) {
@@ -156,17 +168,12 @@ public void grid(){
         col = 175; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
       }
         makeSquare(x,y,col);
-<<<<<<< HEAD
-        fill(255);
-        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), x, y);
-      }
-=======
-        fill(0);
+      fill(0);
         text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE ).getNeighbors()), x+50, y+50);
     }
->>>>>>> 6c9f78a (the numbers are being displayed properly. it was just because of offset axis, not index)
   }
 }
+
 
 public void flagButton() {
   makeSquare(825, 100, 0);
@@ -183,6 +190,7 @@ public void newGameButton() {
   textSize(20);
   text("New Game", 830, 50);
 }
+
 
 public String end() {
   fill(225);
