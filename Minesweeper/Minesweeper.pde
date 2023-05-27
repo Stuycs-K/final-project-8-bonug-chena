@@ -34,7 +34,6 @@ public void Board() {
     for (int y = 0; y < mineMap[x].length; y++) {
       mineMap[x][y] = new Tile();
     }
-=======
 }
 
 void draw(){
@@ -93,7 +92,6 @@ void mouseClicked(){
     grid();
     //END = false;
   }
->>>>>>> ba238ca (tried to fix flag but now its broken.)
   }
 }
 
@@ -166,9 +164,9 @@ public void grid() {
       if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].hasMine()) {
         col = 100;
       }
-      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()) {
-        col = 175;
-      }
+      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
+        col = 175; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
+    }
       makeSquare(x, y, col);
       if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].FLAG) {
         placeFlag(y, x);
