@@ -2,21 +2,24 @@ import java.util.Arrays;
 private Tile[][] mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
+boolean NEWMAP = false;
 boolean FLAGPRESSED;
 PImage img;
 
 void setup(){
   size(950 ,800);
   Board();
+  grid();
   img = loadImage("flag.png");
 }
 
 void draw(){
-  Board();
-  grid();
   flagButton();
   newGameButton();
-  noLoop();
+  if (END == true || NEWMAP){
+    Board();
+    grid();
+  }
 }
 
   public void Board() {
@@ -47,18 +50,11 @@ void draw(){
     return x/SQUARE_SIZE * SQUARE_SIZE;
   }
 
-
-//void keyPressed(){
-//  Board();
-//  grid();
-//}
-
-
 void mouseClicked(){
   int x = mouseX;
   int y = mouseY;
   if (x<925 && x>825 && y >20 && y <70){
-    redraw();
+    NEWMAP= true;
   }
   if (x<925 && x > 825 && y > 100 && y < 200){
     FLAGPRESSED = !FLAGPRESSED;
@@ -67,30 +63,23 @@ void mouseClicked(){
   else if (x <= 800){
   if (FLAGPRESSED){
     placeFlag(x,y);
+    //noLoop();
+  }
+  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
+  redraw();
+  if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true && !FLAGPRESSED){
+    END = true;
+    end();
     noLoop();
   }
-  //mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
-  //redraw();
-  //if (mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].MINE == true && !FLAGPRESSED){
-  //  END = true;
-  //  end();
-  //  noLoop();
-  //}
-  //if (END == true){
-  //  end();
-  //  Board();
-  //  grid();
-  //  END = false;
-  //}
-  }
-}
-
-  public void newGame(){
+  if (END == true){
+    end();
     Board();
     grid();
-    flagButton();
-    newGameButton();
+    END = false;
   }
+  }
+}
 
 public void makeSquare(int x, int y, int col){
   fill(col);
@@ -99,6 +88,7 @@ public void makeSquare(int x, int y, int col){
 }
 
 public void grid(){
+  NEWMAP = false;
   for(int x = 0; x < width-150; x += SQUARE_SIZE){
     for(int y = 0; y < height; y+= SQUARE_SIZE){
       int col = 250;
@@ -116,7 +106,7 @@ public void grid(){
   }
 }
 
-void flagButton(){
+public void flagButton(){
   makeSquare(825, 100,0);
   image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
   fill(0);
@@ -131,21 +121,6 @@ public void newGameButton(){
   textSize(20);
   text("New Game", 830, 50);
 }
-  
-
-
-//public String test(){
-//  String ans = "";
-//  boolean[][] map = new boolean[mineMap.length][mineMap.length];
-//  for (int i = 0; i < mineMap.length; i++){
-//    for (int j = 0; j < mineMap[i].length; j ++){
-//        map[i][j] = mineMap[i][j].getMine();
-//    }
-//    ans += Arrays.toString(map[i]) + " ";
-//    System.out.println(Arrays.toString(map[i]));
-//  }
-//  return ans;
-//}
 
 public String end(){
   //END = true;
