@@ -11,8 +11,6 @@ void setup() {
   Board();
   grid();
   img = loadImage("flag.png");
-boolean FLAGPRESSED;
-PImage img;
 }
 
 void draw() {
@@ -49,12 +47,6 @@ void draw() {
     */
     mineMap = new Board();
   }
-
-//void keyPressed(){
-//  Board();
-//  grid();
-//}
-
 
 void placeFlag(int x, int y) {
   //image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
