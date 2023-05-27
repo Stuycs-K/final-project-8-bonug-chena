@@ -9,7 +9,11 @@ void setup(){
   size(950 ,800);
   Board();
   img = loadImage("flag.png");
-  //test();
+}
+
+void draw(){
+  grid();
+  flagButton();
 }
 
   public void Board() {
@@ -25,13 +29,13 @@ void setup(){
   }
   
   void placeFlag(int x, int y){
-      image(img, x+1, y +1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+      image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
+  
+  int corner(int x){
+    return x/SQUARE_SIZE * SQUARE_SIZE;
   }
 
-void draw(){
-  grid();
-  flagButton();
-}
 
 //void keyPressed(){
 //  Board();
@@ -48,22 +52,22 @@ void mouseClicked(){
     System.out.println(FLAGPRESSED);
   }
   else if (x <= 800){
-  if (END == true){
-    Board();
-    grid();
+  if (FLAGPRESSED){
+    placeFlag(x,y);
+    //noLoop();
   }
   mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
   redraw();
   if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
-  //if (FLAGPRESSED){
-  //  placeFlag(x,y);
-  //}
     END = true;
     end();
     //noLoop();
   }
-  if (FLAGPRESSED){
-    placeFlag(x,y);
+  if (END == true){
+    end();
+    Board();
+    grid();
+    //END = false;
   }
   }
 }
