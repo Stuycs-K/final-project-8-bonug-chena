@@ -129,11 +129,7 @@ public void grid() {
       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
         col = 100;
       }
-<<<<<<< HEAD
       if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()){
-=======
-      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
->>>>>>> 13af324 (mouseclicked is working but the board creation is in the wrong place. must fix that before neighbors can be displayed properly)
         col = 175; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
       }
         makeSquare(x,y,col);
