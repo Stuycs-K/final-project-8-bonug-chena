@@ -48,7 +48,8 @@ void placeFlag(int x, int y) {
   stroke(255, 49, 49);
   fill(255, 49, 49);
   triangle(corner(x)+45, corner(y)+20, corner(x)+10, corner(y)+37.5, corner(x)+45, corner(y)+55);
-  mineMap[x/SQUARE_SIZE][Y/SQUARE_SIZE].FLAG = true;
+  mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].FLAG = true;
+  text(""+mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].FLAG,x,y);
 }
 
 int corner(int x) {
@@ -66,7 +67,7 @@ void mouseClicked() {
     System.out.println(FLAGPRESSED);
   }
   if (x <= 800) {
-    if (!FLAGPRESSED) {
+    if (!FLAGPRESSED && !mineMap[y/SQUARE_SIZE][X/SQUARE_SIZE].FLAG) {
       mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].HIDDEN = false;
       makeSquare(corner(x), corner(y), 200); //turns tile grey, reveal number here
     }
@@ -140,3 +141,10 @@ public String end() {
   text("Game over.", 175, 360);
   return "Game over";
 }
+
+
+/*
+need to make it so that u cant place a flag on a revealed number/
+if a tile is a mine and has a flag, u cant press on it and die
+add method to unflag a tile.s
+*/
