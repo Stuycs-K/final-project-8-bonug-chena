@@ -2,7 +2,6 @@ import java.util.Arrays;
 private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
-<<<<<<< HEAD
 boolean NEWMAP = false;
 boolean FLAGPRESSED;
 PImage img;
@@ -50,15 +49,6 @@ void draw() {
     */
     mineMap = new Board();
   }
-  
-  void placeFlag(int x, int y){
-      image(img, x+1, y +1, SQUARE_SIZE-1, SQUARE_SIZE-1);
-  }
-
-void draw(){
-  grid();
-  flagButton();
-}
 
 //void keyPressed(){
 //  Board();
@@ -82,7 +72,6 @@ void placeFlag(int x, int y) {
   text(""+mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG,x,y);
 }
 
-<<<<<<< HEAD
 int corner(int x) {
   return x/SQUARE_SIZE * SQUARE_SIZE;
 }
@@ -92,21 +81,12 @@ void mouseClicked() {
   int y = mouseY;
   if (x<925 && x>825 && y >20 && y <70) {
     NEWMAP= true;
-  if (x<925 && x > 825 && y > 50 && y < 150){
-    FLAGPRESSED = !FLAGPRESSED;
-    System.out.println(FLAGPRESSED);
   }
-  else if (x <= 800){
-  if (END == true){
-    Board();
-    grid();
-  }
-<<<<<<< HEAD
   if (x<925 && x > 825 && y > 100 && y < 200) {
     FLAGPRESSED = !FLAGPRESSED;
     System.out.println(FLAGPRESSED);
   }
-  if (x <= 800) {
+  if (x < 800) {
     if (!FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE,X/SQUARE_SIZE).FLAG) {
       mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
       makeSquare(corner(x), corner(y), 200); //turns tile grey, reveal number here
@@ -127,21 +107,6 @@ void mouseClicked() {
       grid();
       END = false;
     }
-//=======
-//  mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
-//  redraw();
-//  if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
-//  //if (FLAGPRESSED){
-//  //  placeFlag(x,y);
-//  //}
-//    END = true;
-//    end();
-//    //noLoop();
-//>>>>>>> 6c9f78a (the numbers are being displayed properly. it was just because of offset axis, not index)
-  }
-  if (FLAGPRESSED){
-    placeFlag(x,y);
-  }
   }
 }
 
