@@ -22,6 +22,9 @@ merge conflicts resolved. started working on displaying the numbers and flags wh
 ## May 26
 finished and merged the working number display onto the main branch. trying to change it so that numbers display only when dug
 
+## may 30
+working on a dig function that recursively opens up empty spaces. started by trying to repurpose alena's display of the numbers
+
 ## Alena Chen
 
 ### May 22
