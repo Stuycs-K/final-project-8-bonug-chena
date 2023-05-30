@@ -3,10 +3,6 @@ public class Tile{
   private boolean MINE;
   private boolean FLAG;
   private int NEIGHBORS;
-  //public static final int MINE = 1;
-  //private static final int FLAG = 2;
-  //private static final int NUMBER = 3;
-
 
   public Tile(){
     double random = Math.random();
@@ -18,20 +14,28 @@ public class Tile{
     }
     FLAG = false;
     HIDDEN = true;
-
   }
 
   public boolean hasMine(){
-    return MINE;
+    return this.MINE;
   }
-
-
+  
   public void setNeighbors(int neighbors){
-  NEIGHBORS = neighbors;
+    NEIGHBORS = neighbors;
   }
+  
   
   public int getNeighbors(){
     return  NEIGHBORS;
+  }
+
+
+  public void setFlag(boolean flag){
+    FLAG = flag;
+  }
+  
+  public boolean hasFlag(){
+    return this.FLAG;
   }
 
   public boolean getHidden(){
