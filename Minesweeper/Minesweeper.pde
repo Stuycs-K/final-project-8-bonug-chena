@@ -74,7 +74,6 @@ void mouseClicked() {
   if (x<925 && x>825 && y >20 && y <70) {
     NEWMAP= true;
   }
-<<<<<<< HEAD
   if (x<925 && x > 825 && y > 100 && y < 200) {
     FLAGPRESSED = !FLAGPRESSED;
     System.out.println(FLAGPRESSED);
@@ -100,14 +99,6 @@ void mouseClicked() {
       grid();
       END = false;
     }
-=======
-  mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
-  redraw();
-  if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE == true){
-    END = true;
-    end();
-    noLoop();
->>>>>>> 2d6f500 (made it so that board class is used instead of making a board in the draw. must fix the edges of neighbors again)
   }
 }
 
@@ -123,7 +114,6 @@ public void grid() {
   for (int x = 0; x < width-150; x += SQUARE_SIZE) {
     for (int y = 0; y < height; y+= SQUARE_SIZE) {
       int col = 250;
-<<<<<<< HEAD
       makeSquare(x, y, col);
       if (mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG) {
         placeFlag(y, x);
@@ -131,27 +121,12 @@ public void grid() {
       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
         col = 100;
       }
-<<<<<<< HEAD
       if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()){
-=======
-      if (!mineMap[y/SQUARE_SIZE][x/SQUARE_SIZE].getHidden()){
->>>>>>> 13af324 (mouseclicked is working but the board creation is in the wrong place. must fix that before neighbors can be displayed properly)
         col = 175; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
       }
         makeSquare(x,y,col);
       fill(0);
         text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE ).getNeighbors()), x+50, y+50);
-=======
-      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
-        col = 100;
-      }
-      if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()){
-        col = 0; /// this changes it to what u press on and its not hidden. must reveal the number here!!!!
-      }
-        makeSquare(x,y,col);
-        fill(255);
-        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), x, y);
->>>>>>> 2d6f500 (made it so that board class is used instead of making a board in the draw. must fix the edges of neighbors again)
     }
   }
 }
