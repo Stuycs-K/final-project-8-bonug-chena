@@ -51,4 +51,4 @@ HOME: added flag methods and flag button where when flag button is pressed and a
 ## May 26
 Helped Giridhar debug his code so that the correct number of surrounding mines appear. Fixed merge conflicts.
 
-Got the flag methods to work for the most part and added a new game button 
+Got the flag methods to work for the most part and added a new game button
