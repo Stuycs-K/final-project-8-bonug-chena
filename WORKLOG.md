@@ -52,3 +52,6 @@ HOME: added flag methods and flag button where when flag button is pressed and a
 Helped Giridhar debug his code so that the correct number of surrounding mines appear. Fixed merge conflicts.
 
 Got the flag methods to work for the most part and added a new game button
+
+## May 30
+CLASS: Fixed merge conflicts and merged the working code to main, made it so that number are revealed when tile is pressed and flag methods workish.
