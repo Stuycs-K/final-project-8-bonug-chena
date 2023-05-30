@@ -3,7 +3,7 @@ public class Board{
   static final int SQUARE_SIZE = 100;
 
 public Board() {
-mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
+mineMap = new Tile[(width -150)/SQUARE_SIZE][height/SQUARE_SIZE];
 for(int x = 0; x < mineMap.length; x ++){
   for(int y = 0; y < mineMap[x].length; y++){
       mineMap[x][y] = new Tile();
