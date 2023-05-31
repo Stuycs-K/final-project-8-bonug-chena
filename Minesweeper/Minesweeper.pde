@@ -80,8 +80,9 @@ void mouseClicked() {
     //reveal number
     if (!FLAGPRESSED) {
       if (!mineMap.getTile(Y/SQUARE_SIZE,X/SQUARE_SIZE).hasFlag()){
-        mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
-        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
+        dig(y/SQUARE_SIZE,x/SQUARE_SIZE, x, y);
+        //mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
+        //text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
       }
     }
 
@@ -91,6 +92,43 @@ void mouseClicked() {
     }
 
   }
+}
+
+public void dig(int row, int col, int x, int y){
+  mineMap.getTile(row, col).HIDDEN = false;
+  text((mineMap.getTile(row, col).getNeighbors()), corner(x) + 45, corner(y)+55);
+  
+  if(row> 0 && row  < mineMap.lengthRow()-1 && col > 0 && col < mineMap.lengthCol()-1){
+      if(mineMap.getTile(row-1, col).getNeighbors() == 0){
+    dig(row-1, col, x -SQUARE_SIZE, y);
+  }
+  if(mineMap.getTile(row+1, col).getNeighbors() == 0){
+    dig(row+1, col, x + SQUARE_SIZE, y);
+  }
+  if(mineMap.getTile(row, col+1).getNeighbors() == 0){
+    dig(row, col+1, x, y+SQUARE_SIZE);
+  }
+  if(mineMap.getTile(row, col-1).getNeighbors() == 0){
+    dig(row, col-1, x, y - SQUARE_SIZE);
+  }
+  
+  if(mineMap.getTile(row-1, col-1).getNeighbors() == 0){
+    dig(row-1, col-1, x -SQUARE_SIZE, y- SQUARE_SIZE);
+  }
+  
+  if(mineMap.getTile(row-1, col+1).getNeighbors() == 0){
+    dig(row-1, col +1, x - SQUARE_SIZE, y+ SQUARE_SIZE);
+  }
+  
+  if(mineMap.getTile(row+1, col+1).getNeighbors() == 0){
+    dig(row+1, col+1, x +SQUARE_SIZE, y + SQUARE_SIZE);
+  }
+  if(mineMap.getTile(row+1, col-1).getNeighbors() == 0){
+    dig(row+1, col-1, x +SQUARE_SIZE, y-SQUARE_SIZE);
+  }
+  }
+  
+
 }
 
 public void makeSquare(int x, int y, int col){
