@@ -6,7 +6,6 @@ boolean NEWMAP = false;
 boolean FLAGPRESSED;
 PImage img;
 
-
 void setup() {
   size(950, 800);
   Board();
@@ -33,7 +32,7 @@ void draw() {
 }
 
 void placeFlag(int x, int y) {
-  if (!mineMap.getTile(y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()) {
+  //if (!mineMap.getTile(y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()) { //if tile has no flag then draw a flag on it
     stroke(0);
     fill(0);
     rect(corner(x)+25, corner(y)+75, 50, 10);
@@ -44,17 +43,20 @@ void placeFlag(int x, int y) {
     stroke(255, 49, 49);
     fill(255, 49, 49);
     triangle(corner(x)+45, corner(y)+20, corner(x)+10, corner(y)+37.5, corner(x)+45, corner(y)+55);
+     mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(true);
     //mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(true);
     //System.out.println(""+ mineMap.getTile(X/SQUARE_SIZE,Y/SQUARE_SIZE).hasFlag());
     //text(""+mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag(), x, y);
-    //System.out.println(""+ mineMap.getTile(mouseX/SQUARE_SIZE, mouseY/SQUARE_SIZE).hasFlag());
-  } else {
+    //tile has flag now but hasFlag is still false
+  //} 
+  /*
+  else { // if tile alr has flag then make the tile grey
     //mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(false);
     makeSquare(corner(x), corner(y), 225);
     //System.out.println(""+ mineMap.getTile(X/SQUARE_SIZE,Y/SQUARE_SIZE).hasFlag());
-    //System.out.println(""+ mineMap.getTile(mouseX/SQUARE_SIZE, mouseY/SQUARE_SIZE).hasFlag());
     //text(""+mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag(), x, y);
   }
+  
   if (!mineMap.getTile(y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()){
     mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(true);
   }
@@ -62,9 +64,15 @@ void placeFlag(int x, int y) {
     mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(false);
   }
   //mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag());
-
+  */
+  
   text(""+mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG,x,y);
-  System.out.println(""+ mineMap.getTile(mouseX/SQUARE_SIZE, mouseY/SQUARE_SIZE).hasFlag());
+  System.out.println(""+ mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag());
+}
+
+public void deflag(int x, int y){
+   makeSquare(corner(x), corner(y), 225);
+   mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(false);
 }
 
 
@@ -90,8 +98,15 @@ void mouseClicked() {
     //place flag
     if (FLAGPRESSED && mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()) {
       //mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(true);
-      placeFlag(x, y);
+      if (!mineMap.getTile(y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()){ // if tile has no flag
+        placeFlag(x, y);
+      }
+      else {
+        deflag(x,y);
+      }
     }
+    
+    //deflag
 
     //reveal number
     if (!FLAGPRESSED) {
