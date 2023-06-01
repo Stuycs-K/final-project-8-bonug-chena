@@ -25,6 +25,9 @@ finished and merged the working number display onto the main branch. trying to c
 ## may 30
 working on a dig function that recursively opens up empty spaces. started by trying to repurpose alena's display of the numbers
 
+## may 31
+worked on dig function recursion but the cases don't work alll the time. tried troubleshooting and making it work properly
+
 ## Alena Chen
 
 ### May 22
