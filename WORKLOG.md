@@ -22,6 +22,10 @@ merge conflicts resolved. started working on displaying the numbers and flags wh
 ## May 26
 finished and merged the working number display onto the main branch. trying to change it so that numbers display only when dug
 
+
+## May 31
+the dig method recursively checks whether or not the square next to it should be opened. it's still wonky and has to be fixed
+
 ## Alena Chen
 
 ### May 22
