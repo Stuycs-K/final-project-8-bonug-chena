@@ -5,6 +5,7 @@ static final int SQUARE_SIZE = 100;
 boolean NEWMAP = false;
 boolean FLAGPRESSED;
 PImage img;
+PImage img2;
 
 
 void setup() {
@@ -12,6 +13,7 @@ void setup() {
   Board();
   grid();
   img = loadImage("flag.png");
+  img2 = loadImage("flagOn.png");
 }
 
   public void Board() {
@@ -64,6 +66,8 @@ void mouseClicked() {
   }
   if (x<925 && x > 825 && y > 100 && y < 200) {
     FLAGPRESSED = !FLAGPRESSED;
+    flagButton();
+    
     System.out.println(FLAGPRESSED); //remove later
   }
   if (x < 800 && END == false) {
@@ -164,12 +168,19 @@ public void grid() {
 }
 
 void flagButton(){
-  makeSquare(825, 100,0);
-  image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+   makeSquare(825, 100, 60);
   textSize(22);
-  fill(0, 0, 0);
+  fill(100, 100, 100);
   text("Flag placer", 825, 220);
+  if(FLAGPRESSED){
+    image(img2, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  } 
+  else {
+    image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
 }
+
+
 
 
 public void newGameButton() {
