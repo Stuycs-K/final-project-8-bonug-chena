@@ -73,9 +73,14 @@ void mouseClicked() {
   if (x < 800 && END == false) {
 
     //place flag
-    if (FLAGPRESSED && mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden()) {
+    if (FLAGPRESSED && /*mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden() &&*/ !mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasFlag()) {
       mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(true);
       placeFlag(x, y);
+    }
+    
+    else if(FLAGPRESSED && /*mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden() && */mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasFlag()){
+      mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(false);
+      makeSquare( corner(x), corner(y), 250);
     }
 
     //deflag
@@ -84,9 +89,12 @@ void mouseClicked() {
     //reveal number
     if (!FLAGPRESSED) {
       if (!mineMap.getTile(Y/SQUARE_SIZE,X/SQUARE_SIZE).hasFlag()){
-        dig(y/SQUARE_SIZE,x/SQUARE_SIZE, x, y);
-        //mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
-        //text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
+        if( (mineMap.getTile(Y/SQUARE_SIZE,X/SQUARE_SIZE).getNeighbors()) != 0){
+          mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
+        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
+        }
+        else dig(y/SQUARE_SIZE,x/SQUARE_SIZE, x, y);
+        
       }
     }
 
