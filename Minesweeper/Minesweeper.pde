@@ -80,7 +80,9 @@ void mouseClicked() {
     
     else if(FLAGPRESSED && /*mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden() && */mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasFlag()){
       mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(false);
-      makeSquare( corner(x), corner(y), 250);
+      int col = 250;
+      if(mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasMine())col = 100;
+      makeSquare(corner(x), corner(y), col); // must check where this is going wrong
     }
 
     //deflag
@@ -89,11 +91,11 @@ void mouseClicked() {
     //reveal number
     if (!FLAGPRESSED) {
       if (!mineMap.getTile(Y/SQUARE_SIZE,X/SQUARE_SIZE).hasFlag()){
-        if( (mineMap.getTile(Y/SQUARE_SIZE,X/SQUARE_SIZE).getNeighbors()) != 0){
+        /*if( (mineMap.getTile(Y/SQUARE_SIZE,X/SQUARE_SIZE).getNeighbors()) != 0){
           mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
         text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
         }
-        else dig(y/SQUARE_SIZE,x/SQUARE_SIZE, x, y);
+        else */dig(y/SQUARE_SIZE,x/SQUARE_SIZE, x, y);
         
       }
     }
@@ -106,10 +108,14 @@ void mouseClicked() {
   }
 }
 
+//first check if its zero
+//if its zero, then go to all surrounding squares
+//if its not zero, stop there
+
 public void dig(int row, int col, int x, int y){ //it overwrites already open squares for some reason
   mineMap.getTile(row, col).HIDDEN = false;
   text((mineMap.getTile(row, col).getNeighbors()), corner(x) + 45, corner(y)+55);
-  println("row: " + row + "    col: " + col + "        x: " + x + "    y: " + y);
+  //println("row: " + row + "    col: " + col + "        x: " + x + "    y: " + y);
   if(row> 0 && row  < mineMap.lengthRow()-1 && col > 0 && col < mineMap.lengthCol()-1){
       if(mineMap.getTile(row-1, col).getNeighbors() == 0 && mineMap.getTile(row-1, col).getHidden()){
     dig(row-1, col, x, y  -SQUARE_SIZE);
@@ -139,6 +145,10 @@ public void dig(int row, int col, int x, int y){ //it overwrites already open sq
   if(mineMap.getTile(row+1, col-1).getNeighbors() == 0 && mineMap.getTile(row+1, col-1).getHidden()){
     dig(row+1, col-1, x +SQUARE_SIZE, y-SQUARE_SIZE);
   }*/
+  if(mineMap.getTile(row-1, col).getHidden() && !mineMap.getTile(row-1, col).hasMine()) dig(row-1, col, x, y  -SQUARE_SIZE);
+  if(mineMap.getTile(row+1, col).getHidden() && !mineMap.getTile(row+1, col).hasMine()) dig(row+1, col, x , y+ SQUARE_SIZE);
+  if(mineMap.getTile(row, col+1).getHidden() && !mineMap.getTile(row, col+1).hasMine())  dig(row, col+1, x+SQUARE_SIZE, y);
+  if(mineMap.getTile(row, col-1).getHidden() && !mineMap.getTile(row, col-1).hasMine()) dig(row, col-1, x- SQUARE_SIZE, y );
   }
   
 

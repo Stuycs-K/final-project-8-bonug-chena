@@ -2,7 +2,7 @@ public class Tile{
   private boolean HIDDEN;
   private boolean MINE;
   private boolean FLAG;
-  private int NEIGHBORS;
+  private int NEIGHBORS ;
 
   public Tile(){
     double random = Math.random();

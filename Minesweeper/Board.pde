@@ -17,10 +17,13 @@ for(int x = 0; x < mineMap.length; x ++){
        if(!mineMap[row][col].hasMine()){
          mineMap[row][col].setNeighbors(surroundingMines(row, col));
        }
+       else mineMap[row][col].setNeighbors(-1);
       }
     }
   }
-
+ 
+ 
+ 
   public int surroundingMines(int row, int col){
     int neighbors = 0;
     if(row == 0 && col == 0){ //left top corner
