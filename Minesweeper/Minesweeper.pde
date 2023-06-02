@@ -4,6 +4,7 @@ private boolean END;
 static final int SQUARE_SIZE = 100;
 boolean NEWMAP = false;
 boolean FLAGPRESSED;
+boolean DEFLAG;
 PImage img;
 PImage img2;
 
@@ -28,6 +29,7 @@ void setup() {
 void draw() {
   flagButton();
   newGameButton();
+  deflagButton();
   if (NEWMAP) {
     Board();
     grid();
@@ -47,13 +49,41 @@ void placeFlag(int x, int y) {
   fill(255, 49, 49);
   triangle(corner(x)+45, corner(y)+20, corner(x)+10, corner(y)+37.5, corner(x)+45, corner(y)+55);
   //text(""+mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG,x,y);
-  System.out.println(""+ mineMap.getTile(X/SQUARE_SIZE,Y/SQUARE_SIZE).hasFlag());
+  //System.out.println(""+ mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).hasFlag());
 }
 
 
-void keyPressed(){
-  Board();
-  grid();
+public void deflag(int x, int y){
+   makeSquare(corner(x), corner(y), 250);
+   mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(false);
+}
+
+void keyPressed(){ 
+  //for demo purposes, delete later - reveals where all the bombs are
+  for (int x = 0; x < 800; x += SQUARE_SIZE) {
+    for (int y = 0; y <800; y+= SQUARE_SIZE) {
+       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+          makeSquare(corner(x), corner(y), 100); 
+       }
+    }
+  }
+}
+
+public void deflagButton(){
+  makeSquare(825, 250, 0);
+  textSize(22);
+  fill(0, 0, 0);
+  if(DEFLAG){
+    image(img2, 826,251,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  } 
+  else {
+    image(img, 826,251,SQUARE_SIZE-1, SQUARE_SIZE-1);
+  }
+  textSize(130);
+  text("X", 840, 340);
+  textSize(22);
+  text("Deflag", 825, 370);
+  
 }
 
 
@@ -68,7 +98,19 @@ void mouseClicked() {
     FLAGPRESSED = !FLAGPRESSED;
     flagButton();
     
-    System.out.println(FLAGPRESSED); //remove later
+    
+    if(FLAGPRESSED){
+      flagButton();
+    //  image(img2, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+    //} 
+    //else {
+    //  image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+    }
+    
+    //System.out.println(FLAGPRESSED); //remove later
+  }
+  if (x < 925 && x > 825 && y > 250 && y < 350){
+    DEFLAG = !DEFLAG;
   }
   if (x < 800 && END == false) {
 
@@ -78,14 +120,19 @@ void mouseClicked() {
       placeFlag(x, y);
     }
     
-    else if(FLAGPRESSED && /*mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden() && */mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasFlag()){
-      mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(false);
-      int col = 250;
-      if(mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasMine())col = 100;
-      makeSquare(corner(x), corner(y), col); // must check where this is going wrong, only goes in a diagonal line from top to bottom
-    }
+    
+    //else if(FLAGPRESSED && /*mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden() && */mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasFlag()){
+    //  mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(false);
+    //  int col = 250;
+    //  if(mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasMine())col = 100;
+    //  makeSquare(corner(x), corner(y), col); // must check where this is going wrong, only goes in a diagonal line from top to bottom
+    //}
+    
 
     //deflag
+    if (DEFLAG) {
+        deflag(x,y);
+    }
 
 
     //reveal number
@@ -105,7 +152,7 @@ void mouseClicked() {
         }
         else {
           mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).HIDDEN = false;
-        text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
+          text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
         }
         
       }
@@ -164,8 +211,6 @@ public void dig(int row, int col, int x, int y){
   }
   
   }
-  
-
 }
 
 public void makeSquare(int x, int y, int col){
@@ -181,12 +226,6 @@ public void grid() {
     for (int y = 0; y < height; y+= SQUARE_SIZE) {
       int col = 250;
       makeSquare(x, y, col);
-      //if (mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG) {
-      //  placeFlag(y, x);
-      //}
-      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
-        col = 100; // delete this part later
-      }
       if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()){
         col = 175;
         text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), x+50, y+50);
@@ -194,13 +233,12 @@ public void grid() {
       }
         makeSquare(x,y,col);
       fill(0);
-        //text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), x+50, y+50);
     }
   }
 }
 
 void flagButton(){
-   makeSquare(825, 100, 60);
+  makeSquare(825, 100, 60);
   textSize(22);
   fill(100, 100, 100);
   text("Flag placer", 825, 220);
@@ -231,10 +269,10 @@ public void end(){
   square(0, 0, width);
   textSize(100);
   fill(0, 0, 0);
-  text("Game over.", 100, 360);
-  text("Goodbye. Press", 100, 460);
-  text("\"New Game\"", 100, 560);
-  text("to play again.", 100, 660);
+  text("Game over.", 100, 260);
+  text("Goodbye. Press", 100, 360);
+  text("\"New Game\"", 100, 460);
+  text("to play again.", 100, 560);
 }
 
 
