@@ -82,7 +82,7 @@ void mouseClicked() {
       mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(false);
       int col = 250;
       if(mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasMine())col = 100;
-      makeSquare(corner(x), corner(y), col); // must check where this is going wrong
+      makeSquare(corner(x), corner(y), col); // must check where this is going wrong, only goes in a diagonal line from top to bottom
     }
 
     //deflag
