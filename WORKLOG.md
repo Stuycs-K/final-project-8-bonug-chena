@@ -28,6 +28,9 @@ working on a dig function that recursively opens up empty spaces. started by try
 ## may 31
 worked on dig function recursion but the cases don't work alll the time. tried troubleshooting and making it work properly
 
+## June 1
+worked on dig function again. created an easy way to tell when your flag is on and started messing with flag remover
+
 ## Alena Chen
 
 ### May 22
