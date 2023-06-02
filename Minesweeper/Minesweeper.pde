@@ -94,25 +94,26 @@ void mouseClicked() {
   }
 }
 
-public void dig(int row, int col, int x, int y){
+public void dig(int row, int col, int x, int y){ //it overwrites already open squares for some reason
   mineMap.getTile(row, col).HIDDEN = false;
   text((mineMap.getTile(row, col).getNeighbors()), corner(x) + 45, corner(y)+55);
-  
+  println("row: " + row + "    col: " + col + "        x: " + x + "    y: " + y);
   if(row> 0 && row  < mineMap.lengthRow()-1 && col > 0 && col < mineMap.lengthCol()-1){
-      if(mineMap.getTile(row-1, col).getNeighbors() == 0){
-    dig(row-1, col, x -SQUARE_SIZE, y);
-  }
-  if(mineMap.getTile(row+1, col).getNeighbors() == 0){
-    dig(row+1, col, x + SQUARE_SIZE, y);
-  }
-  if(mineMap.getTile(row, col+1).getNeighbors() == 0){
-    dig(row, col+1, x, y+SQUARE_SIZE);
-  }
-  if(mineMap.getTile(row, col-1).getNeighbors() == 0){
-    dig(row, col-1, x, y - SQUARE_SIZE);
+      if(mineMap.getTile(row-1, col).getNeighbors() == 0 && mineMap.getTile(row-1, col).getHidden()){
+    dig(row-1, col, x, y  -SQUARE_SIZE);
   }
   
-  if(mineMap.getTile(row-1, col-1).getNeighbors() == 0){
+  if(mineMap.getTile(row+1, col).getNeighbors() == 0 && mineMap.getTile(row+1, col).getHidden()){
+    dig(row+1, col, x , y+ SQUARE_SIZE);
+  }
+  if(mineMap.getTile(row, col+1).getNeighbors() == 0 && mineMap.getTile(row, col+1).getHidden()){
+    dig(row, col+1, x+SQUARE_SIZE, y);
+  }
+  if(mineMap.getTile(row, col-1).getNeighbors() == 0 && mineMap.getTile(row, col-1).getHidden()){
+    dig(row, col-1, x- SQUARE_SIZE, y );
+  }
+  /*
+  if(mineMap.getTile(row-1, col-1).getNeighbors() == 0 && mineMap.getTile(row-1, col-1).getHidden()){
     dig(row-1, col-1, x -SQUARE_SIZE, y- SQUARE_SIZE);
   }
   
@@ -120,12 +121,12 @@ public void dig(int row, int col, int x, int y){
     dig(row-1, col +1, x - SQUARE_SIZE, y+ SQUARE_SIZE);
   }
   
-  if(mineMap.getTile(row+1, col+1).getNeighbors() == 0){
+  if(mineMap.getTile(row+1, col+1).getNeighbors() == 0 && mineMap.getTile(row+1, col+1).getHidden()){
     dig(row+1, col+1, x +SQUARE_SIZE, y + SQUARE_SIZE);
   }
-  if(mineMap.getTile(row+1, col-1).getNeighbors() == 0){
+  if(mineMap.getTile(row+1, col-1).getNeighbors() == 0 && mineMap.getTile(row+1, col-1).getHidden()){
     dig(row+1, col-1, x +SQUARE_SIZE, y-SQUARE_SIZE);
-  }
+  }*/
   }
   
 
