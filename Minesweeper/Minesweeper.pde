@@ -4,6 +4,7 @@ private boolean END;
 static final int SQUARE_SIZE = 100;
 boolean NEWMAP = false;
 boolean FLAGPRESSED;
+boolean DEFLAG;
 PImage img;
 
 void setup() {
@@ -24,6 +25,7 @@ int corner(int x) {
 
 void draw() {
   flagButton();
+  deflagButton();
   newGameButton();
   if (NEWMAP) {
     Board();
@@ -71,7 +73,7 @@ void placeFlag(int x, int y) {
 }
 
 public void deflag(int x, int y){
-   makeSquare(corner(x), corner(y), 225);
+   makeSquare(corner(x), corner(y), 250);
    mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(false);
 }
 
@@ -81,7 +83,18 @@ public void deflag(int x, int y){
 //  grid();
 //}
 
-
+public void deflagButton(){
+  makeSquare(825, 250, 0);
+  image(img, 826, 101, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  textSize(22);
+  fill(0, 0, 0);
+  image(img, 826, 251, SQUARE_SIZE-1, SQUARE_SIZE-1);
+  textSize(130);
+  text("X", 840, 340);
+  textSize(22);
+  text("Deflag", 825, 370);
+  
+}
 
 void mouseClicked() {
   int x = mouseX;
@@ -93,6 +106,10 @@ void mouseClicked() {
     FLAGPRESSED = !FLAGPRESSED;
     System.out.println(FLAGPRESSED); //remove later
   }
+  if (x < 925 && x > 825 && y > 250 && y < 350){
+    DEFLAG = !DEFLAG;
+    System.out.println(DEFLAG);
+  }
   if (x < 800 && END == false) {
 
     //place flag
@@ -101,10 +118,10 @@ void mouseClicked() {
       if (!mineMap.getTile(y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()){ // if tile has no flag
         placeFlag(x, y);
       }
-      else {
+    }
+     if (DEFLAG ) {
         deflag(x,y);
       }
-    }
     
     //deflag
 
@@ -117,7 +134,7 @@ void mouseClicked() {
     }
 
     //press on mine
-    if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE && !FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).FLAG) {
+    if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE && !FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).FLAG && !DEFLAG) {
       end();
     }
   }
