@@ -57,3 +57,6 @@ Got the flag methods to work for the most part and added a new game button
 CLASS: Fixed merge conflicts and merged the working code to main, made it so that number are revealed when tile is pressed and flag methods workish.
 
 HOME: fixed bug where bottom row wasn't displaying the correct numbers, tried to add deflag method but does not work.
+
+## May 31
+Added deflag button and redid deflag since the original deflag was not working. Made a keypressed that reveals where are the mines are for the demo
