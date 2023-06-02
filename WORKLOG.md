@@ -22,9 +22,14 @@ merge conflicts resolved. started working on displaying the numbers and flags wh
 ## May 26
 finished and merged the working number display onto the main branch. trying to change it so that numbers display only when dug
 
+## may 30
+working on a dig function that recursively opens up empty spaces. started by trying to repurpose alena's display of the numbers
 
-## May 31
-the dig method recursively checks whether or not the square next to it should be opened. it's still wonky and has to be fixed
+## may 31
+worked on dig function recursion but the cases don't work alll the time. tried troubleshooting and making it work properly
+
+## June 1
+worked on dig function again. created an easy way to tell when your flag is on and started messing with flag remover
 
 ## Alena Chen
 
@@ -51,3 +56,11 @@ HOME: added to mouseclicked method so that if you click on the screen again afte
 CLASS: fixed a bunch of merge conflicts, tried to move some of the stuff in minesweeper to board so that board methods would work
 
 HOME: added flag methods and flag button where when flag button is pressed and a tile is clicked, a flag is placed on the tile
+
+## May 26
+Helped Giridhar debug his code so that the correct number of surrounding mines appear. Fixed merge conflicts.
+
+Got the flag methods to work for the most part and added a new game button
+
+## May 30
+CLASS: Fixed merge conflicts and merged the working code to main, made it so that number are revealed when tile is pressed and flag methods workish.
