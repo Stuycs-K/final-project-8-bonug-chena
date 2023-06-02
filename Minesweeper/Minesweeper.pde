@@ -68,8 +68,8 @@ void placeFlag(int x, int y) {
   //mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).setFlag(!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag());
   */
   
-  text(""+mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG,x,y);
-  System.out.println(""+ mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag());
+  //text(""+mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG,x,y);
+  //System.out.println(""+ mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag());
 }
 
 public void deflag(int x, int y){
@@ -78,10 +78,16 @@ public void deflag(int x, int y){
 }
 
 
-//void keyPressed(){
-//  Board();
-//  grid();
-//}
+void keyPressed(){ 
+  //for demo purposes, delete later - reveals where all the bombs are
+  for (int x = 0; x < 800; x += SQUARE_SIZE) {
+    for (int y = 0; y <800; y+= SQUARE_SIZE) {
+       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+          makeSquare(corner(x), corner(y), 100); 
+       }
+    }
+  }
+}
 
 public void deflagButton(){
   makeSquare(825, 250, 0);
@@ -104,11 +110,11 @@ void mouseClicked() {
   }
   if (x<925 && x > 825 && y > 100 && y < 200) {
     FLAGPRESSED = !FLAGPRESSED;
-    System.out.println(FLAGPRESSED); //remove later
+    //System.out.println(FLAGPRESSED); //remove later
   }
   if (x < 925 && x > 825 && y > 250 && y < 350){
     DEFLAG = !DEFLAG;
-    System.out.println(DEFLAG);
+    //System.out.println(DEFLAG);
   }
   if (x < 800 && END == false) {
 
@@ -119,12 +125,10 @@ void mouseClicked() {
         placeFlag(x, y);
       }
     }
-     if (DEFLAG ) {
+    //deflag
+     if (DEFLAG) {
         deflag(x,y);
       }
-    
-    //deflag
-
     //reveal number
     if (!FLAGPRESSED) {
       if (!mineMap.getTile(Y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()) {
@@ -156,9 +160,9 @@ public void grid() {
       //if (mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG) {
       //  placeFlag(y, x);
       //}
-      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
-        col = 100; // delete this part later
-      }
+      //if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+      //  col = 100; // delete this part later
+      //}
       if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()) {
         col = 175;
         text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), x+50, y+50);
