@@ -6,6 +6,7 @@ boolean NEWMAP = false;
 boolean FLAGPRESSED;
 boolean DEFLAG;
 PImage img;
+public int mineCounter = 0; 
 
 void setup() {
   size(950, 800);
@@ -87,6 +88,7 @@ void keyPressed(){
        }
     }
   }
+  mineMap.mineNums();
 }
 
 public void deflagButton(){
@@ -123,6 +125,9 @@ void mouseClicked() {
       //mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(true);
       if (!mineMap.getTile(y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()){ // if tile has no flag
         placeFlag(x, y);
+        if (mineMap.getTile(Y/SQUARE_SIZE, X/SQUARE_SIZE).hasMine()){
+          mineCounter ++;
+        }
       }
     }
     //deflag
@@ -140,6 +145,9 @@ void mouseClicked() {
     //press on mine
     if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE && !FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).FLAG && !DEFLAG) {
       end();
+    }
+    if (mineCounter == mineMap.mineNums()){
+      winner();
     }
   }
 }
@@ -204,6 +212,12 @@ public void end() {
   text("Goodbye. Press", 100, 460);
   text("\"New Game\"", 100, 560);
   text("to play again.", 100, 660);
+}
+
+public void winner(){
+  END = true;
+  fill(0, 0, 0);
+  text("Congrats, you found all the mines!" , 100, 360);
 }
 
 

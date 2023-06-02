@@ -1,16 +1,26 @@
 public class Board{
   private Tile[][] mineMap;
   static final int SQUARE_SIZE = 100;
+  private int MINES = 0; 
 
 public Board() {
 mineMap = new Tile[(width -150)/SQUARE_SIZE][height/SQUARE_SIZE];
 for(int x = 0; x < mineMap.length; x ++){
   for(int y = 0; y < mineMap[x].length; y++){
       mineMap[x][y] = new Tile();
+      if (mineMap[x][y].hasMine()) {
+          MINES ++;
+      }
     }
   }
   numSet();
 }
+
+public int mineNums(){
+  return MINES;
+}
+
+
   public void numSet(){
     for(int row = 0; row <  mineMap.length; row++){
       for(int col = 0; col< mineMap[row].length; col++){
