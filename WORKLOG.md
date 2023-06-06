@@ -49,5 +49,20 @@ CLASS: fixed a bunch of merge conflicts, tried to move some of the stuff in mine
 HOME: added flag methods and flag button where when flag button is pressed and a tile is clicked, a flag is placed on the tile
 
 ## May 26
+Helped Giridhar debug his code so that the correct number of surrounding mines appear. Fixed merge conflicts.
 
-CLASS: Helped Giridhar debug his code, worked more on adding flag methods to code.
+Got the flag methods to work for the most part and added a new game button
+
+## May 30
+CLASS: Fixed merge conflicts and merged the working code to main, made it so that number are revealed when tile is pressed and flag methods workish.
+
+HOME: fixed bug where bottom row wasn't displaying the correct numbers, tried to add deflag method but does not work.
+
+## May 31
+Added deflag button and redid deflag since the original deflag was not working. Made a keypressed that reveals where are the mines are for the demo
+
+## June 1
+Worked on demo branch, tried to fix deflag methods
+
+## June 5
+made it so that if all the mines are properly flagged, a winner screen appears

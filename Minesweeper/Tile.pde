@@ -19,29 +19,28 @@ public class Tile{
   public boolean hasMine(){
     return this.MINE;
   }
-  
+
   public void setNeighbors(int neighbors){
     NEIGHBORS = neighbors;
-  }
-  
-  
-  public int getNeighbors(){
-    return  NEIGHBORS;
   }
 
 
   public void setFlag(boolean flag){
     FLAG = flag;
   }
-  
+
   public boolean hasFlag(){
     return FLAG;
+  }
+
+  public int getNeighbors(){
+    return  NEIGHBORS;
   }
 
   public boolean getHidden(){
     return HIDDEN;
   }
-  
+
 
 
 }

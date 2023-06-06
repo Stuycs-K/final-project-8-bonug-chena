@@ -16,6 +16,7 @@ void setup() {
   img = loadImage("flag.png");
 }
 
+
 public void Board() {
   END = false;
   mineMap = new Board();
@@ -135,9 +136,11 @@ void mouseClicked() {
       }
     }
     //deflag
-     if (DEFLAG) {
-        deflag(x,y);
-      }
+
+    //deflag
+     //if (DEFLAG) {
+     //   deflag(x,y);
+     // }
     //reveal number
     if (!FLAGPRESSED) {
       if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag()) {
@@ -150,9 +153,13 @@ void mouseClicked() {
     if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE && !FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).FLAG && !DEFLAG) {
       end();
     }
+<<<<<<< HEAD
     if (mineCounter == boardMines){
       winner();
     }
+=======
+
+>>>>>>> 2f70bbc526bcd0b4dbed873ee7e7dd4e8f660489
   }
   System.out.println("boardmines: " + boardMines);
   System.out.println("counted mines: " + mineCounter);
