@@ -60,3 +60,9 @@ HOME: fixed bug where bottom row wasn't displaying the correct numbers, tried to
 
 ## May 31
 Added deflag button and redid deflag since the original deflag was not working. Made a keypressed that reveals where are the mines are for the demo
+
+## June 1
+Worked on demo branch, tried to fix deflag methods
+
+## June 5
+made it so that if all the mines are properly flagged, a winner screen appears
