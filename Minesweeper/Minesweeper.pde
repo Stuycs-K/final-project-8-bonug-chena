@@ -2,11 +2,12 @@ import java.util.Arrays;
 private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
-boolean NEWMAP = false;
+boolean NEWMAP cs= false;
 boolean FLAGPRESSED;
 boolean DEFLAG;
 PImage img;
-public int mineCounter = 0; 
+private int boardMines;
+private int mineCounter = 0; 
 
 void setup() {
   size(950, 800);
@@ -18,6 +19,8 @@ void setup() {
 public void Board() {
   END = false;
   mineMap = new Board();
+  boardMines = mineMap.getMineNum();
+  mineCounter =0;
 }
 
 int corner(int x) {
@@ -28,6 +31,7 @@ void draw() {
   flagButton();
   deflagButton();
   newGameButton();
+  //mineCounter = 0;
   if (NEWMAP) {
     Board();
     grid();
@@ -88,7 +92,7 @@ void keyPressed(){
        }
     }
   }
-  mineMap.mineNums();
+  //mineMap.getMineNum();
 }
 
 public void deflagButton(){
@@ -123,9 +127,9 @@ void mouseClicked() {
     //place flag
     if (FLAGPRESSED && mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()) {
       //mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(true);
-      if (!mineMap.getTile(y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()){ // if tile has no flag
+      if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag()){ // if tile has no flag
         placeFlag(x, y);
-        if (mineMap.getTile(Y/SQUARE_SIZE, X/SQUARE_SIZE).hasMine()){
+        if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
           mineCounter ++;
         }
       }
@@ -136,7 +140,7 @@ void mouseClicked() {
       }
     //reveal number
     if (!FLAGPRESSED) {
-      if (!mineMap.getTile(Y/SQUARE_SIZE, X/SQUARE_SIZE).hasFlag()) {
+      if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag()) {
         mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
         text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + 45, corner(y)+55);
       }
@@ -146,10 +150,12 @@ void mouseClicked() {
     if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE && !FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).FLAG && !DEFLAG) {
       end();
     }
-    if (mineCounter == mineMap.mineNums()){
+    if (mineCounter == boardMines){
       winner();
     }
   }
+  System.out.println("boardmines: " + boardMines);
+  System.out.println("counted mines: " + mineCounter);
 }
 
 public void makeSquare(int x, int y, int col) {
@@ -216,8 +222,14 @@ public void end() {
 
 public void winner(){
   END = true;
+  fill(225);
+  stroke(0);
+  square(0, 0, width);
+  textSize(100);
   fill(0, 0, 0);
-  text("Congrats, you found all the mines!" , 100, 360);
+  text("Congrats, you " , 100, 360);
+  text("found all mines!" , 100, 460);
+  
 }
 
 
