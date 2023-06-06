@@ -16,7 +16,7 @@ for(int x = 0; x < mineMap.length; x ++){
   numSet();
 }
 
-public int mineNums(){
+public int getMineNum(){
   return MINES;
 }
 
