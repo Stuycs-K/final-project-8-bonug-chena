@@ -1,7 +1,8 @@
 import java.util.Arrays;
 private Board mineMap;
 private boolean END;
-static final int SQUARE_SIZE = 100;
+static  int SQUARE_SIZE;
+private int diff;
 boolean NEWMAP = false;
 boolean FLAGPRESSED;
 boolean DEFLAG;
@@ -10,6 +11,8 @@ PImage img2;
 
 
 void setup() {
+  diff = 1;
+  SQUARE_SIZE =100;
   size(950, 800);
   Board();
   grid();
@@ -19,7 +22,7 @@ void setup() {
 
   public void Board() {
     END = false;
-    mineMap = new Board();
+    mineMap = new Board(1);
   }
 
   int corner(int x) {
@@ -30,11 +33,19 @@ void draw() {
   flagButton();
   newGameButton();
   deflagButton();
+  difficultyButton();
   if (NEWMAP) {
     Board();
     grid();
   }
 }
+
+void difficultyButton(){
+    fill(0);
+   rect(825, 450, SQUARE_SIZE, 50);
+   
+}
+
 
 void placeFlag(int x, int y) {
   //image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
@@ -88,7 +99,9 @@ public void deflagButton(){
 
 
 
+
 void mouseClicked() {
+  
   int x = mouseX;
   int y = mouseY;
   if (x<925 && x>825 && y >20 && y <70) {
