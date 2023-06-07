@@ -13,6 +13,7 @@ void setup() {
   Board();
   grid();
   img = loadImage("flag.png");
+  img2 = loadImage("flagOn.png");
 }
 
 
@@ -238,11 +239,10 @@ public void grid() {
   }
 }
 
-void flagButton() {
-  makeSquare(825, 100, 0);
-  //image(img, 826, 101, SQUARE_SIZE-1, SQUARE_SIZE-1);
+void flagButton(){
+  makeSquare(825, 100, 60);
   textSize(22);
-  fill(0, 0, 0);
+  fill(100, 100, 100);
   text("Flag placer", 825, 220);
   if(FLAGPRESSED){
     image(img2, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
@@ -251,6 +251,8 @@ void flagButton() {
     image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
   }
 }
+
+
 
 
 public void newGameButton() {
@@ -262,7 +264,7 @@ public void newGameButton() {
 }
 
 
-public void end() {
+public void end(){
   END = true;
   fill(225);
   stroke(0);
@@ -274,7 +276,6 @@ public void end() {
   text("\"New Game\"", 100, 460);
   text("to play again.", 100, 560);
 }
-
 
 /*
 if a tile has a flag already, u cant press and reveal number
