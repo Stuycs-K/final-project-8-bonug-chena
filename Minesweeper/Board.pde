@@ -91,6 +91,15 @@ for(int x = 0; x < mineMap.length; x ++){
   public Tile getTile(int row, int col){
     return mineMap[row][col];
   }
+  
+    public int lengthRow(){
+    return mineMap.length;
+  }
+  
+  public int lengthCol(){
+    return mineMap[0].length;
+  }
+  
 
 
 //  public void  mineMaker(){
