@@ -2,7 +2,7 @@ import java.util.Arrays;
 private Board mineMap;
 private boolean END;
 static final int SQUARE_SIZE = 100;
-boolean NEWMAP cs= false;
+boolean NEWMAP= false;
 boolean FLAGPRESSED;
 boolean DEFLAG;
 PImage img;
@@ -153,13 +153,9 @@ void mouseClicked() {
     if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).MINE && !FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).FLAG && !DEFLAG) {
       end();
     }
-<<<<<<< HEAD
     if (mineCounter == boardMines){
       winner();
     }
-=======
-
->>>>>>> 2f70bbc526bcd0b4dbed873ee7e7dd4e8f660489
   }
   System.out.println("boardmines: " + boardMines);
   System.out.println("counted mines: " + mineCounter);
