@@ -66,3 +66,7 @@ Worked on demo branch, tried to fix deflag methods
 
 ## June 5
 made it so that if all the mines are properly flagged, a winner screen appears
+
+## June 6
+CLASS: added winner method where if you correctly place all the mines, you win the game.
+HOME: tried to debug Giridhar's dig method but it still doesnt work
