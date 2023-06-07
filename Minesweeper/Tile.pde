@@ -8,7 +8,7 @@ public class Tile{
     FLAG = false;
     HIDDEN = true;
     double random = Math.random();
-    if (random < .3){
+    if (random < .05){
       MINE = true;
     }
     else {
