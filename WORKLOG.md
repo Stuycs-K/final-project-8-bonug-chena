@@ -31,6 +31,9 @@ worked on dig function recursion but the cases don't work alll the time. tried t
 ## June 1
 worked on dig function again. created an easy way to tell when your flag is on and started messing with flag remover
 
+# june 7
+trying to toggle difficulty levels
+
 ## Alena Chen
 
 ### May 22
