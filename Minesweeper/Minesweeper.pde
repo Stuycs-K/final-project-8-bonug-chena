@@ -7,6 +7,8 @@ boolean FLAGPRESSED;
 boolean DEFLAG;
 PImage img;
 PImage img2;
+private int boardMines;
+private int mineCounter = 0;
 
 
 void setup() {
@@ -20,6 +22,8 @@ void setup() {
   public void Board() {
     END = false;
     mineMap = new Board();
+    boardMines = mineMap.getMineNum();
+    mineCounter = 0;
   }
 
   int corner(int x) {
@@ -94,30 +98,41 @@ void mouseClicked() {
   if (x<925 && x>825 && y >20 && y <70) {
     NEWMAP= true;
   }
+  
+  //pressing flag button
   if (x<925 && x > 825 && y > 100 && y < 200) {
     FLAGPRESSED = !FLAGPRESSED;
-    flagButton();
-    
-    
+    //flagButton();
     if(FLAGPRESSED){
       flagButton();
-    //  image(img2, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
-    //} 
-    //else {
-    //  image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
     }
-    
-    //System.out.println(FLAGPRESSED); //remove later
   }
+  
+  //pressing deflag button
   if (x < 925 && x > 825 && y > 250 && y < 350){
     DEFLAG = !DEFLAG;
   }
-  if (x < 800 && END == false) {
+  
+  //if (x < 800 && END == false) {
 
-    //place flag
-    if (FLAGPRESSED &&  mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden() && !mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasFlag()) {
-      mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(true);
-      placeFlag(x, y);
+  //  //place flag
+  //  if (FLAGPRESSED &&  mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).getHidden() /* &&!mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).hasFlag()*/) {
+  //    mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(true);
+  //    placeFlag(x, y);
+  //    if (mineMap.getTile(x/SQUARE_SIZE, y/SQUARE_SIZE).hasMine()){
+  //      mineCounter ++;
+  //    }
+  //  }
+  
+  if (x < 800 && END == false) {
+    if (FLAGPRESSED && mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getHidden()) {
+      //mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).setFlag(true);
+      if (!mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag()){ // if tile has no flag
+        placeFlag(x, y);
+        if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
+          mineCounter ++;
+        }
+      }
     }
     
     
@@ -162,13 +177,18 @@ void mouseClicked() {
     if (mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).MINE && !FLAGPRESSED && !mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG) {
       end();
     }
-
+    if (mineCounter == boardMines){
+      winner();
+    }
   }
+  System.out.println("boardmines: " + boardMines);
+  System.out.println("counted mines: " + mineCounter);
 }
 
 //first check if its zero
 //if its zero, then go to all surrounding squares
 //if its not zero, stop there
+
 
 public void dig(int row, int col, int x, int y){ 
   mineMap.getTile(row, col).HIDDEN = false;
@@ -212,6 +232,8 @@ public void dig(int row, int col, int x, int y){
   
   }
 }
+
+
 
 public void makeSquare(int x, int y, int col){
   fill(col);
@@ -273,6 +295,18 @@ public void end(){
   text("Goodbye. Press", 100, 360);
   text("\"New Game\"", 100, 460);
   text("to play again.", 100, 560);
+}
+
+public void winner(){
+  END = true;
+  fill(225);
+  stroke(0);
+  square(0, 0, width);
+  textSize(100);
+  fill(0, 0, 0);
+  text("Congrats, you " , 100, 360);
+  text("found all mines!" , 100, 460);
+  
 }
 
 
