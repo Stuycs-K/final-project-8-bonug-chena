@@ -76,3 +76,4 @@ a lot of merge conflicts but finally merged
 
 ## June 9
 trying to make it so that minecounter doesnt count incorrectly placed flags towards the winner method
+fixed bugs with the winner method (made it so that deflagging an empty tile doesnt reveal a number, deflagging an empty space doesnt decrease the totalmine number, and so that you can't flag something that already has a flag)
