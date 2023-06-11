@@ -72,8 +72,8 @@ CLASS: added winner method where if you correctly place all the mines, you win t
 HOME: tried to debug Giridhar's dig method but it still doesnt work
 
 ## June 7
-a lot of merge conflicts but finally merged
-
-## June 9
 trying to make it so that minecounter doesnt count incorrectly placed flags towards the winner method
 fixed bugs with the winner method (made it so that deflagging an empty tile doesnt reveal a number, deflagging an empty space doesnt decrease the totalmine number, and so that you can't flag something that already has a flag)
+
+## June 9
+finally debugged Giridhar's dig method and got it to work i hope.
