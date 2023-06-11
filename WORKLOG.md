@@ -70,3 +70,9 @@ made it so that if all the mines are properly flagged, a winner screen appears
 ## June 6
 CLASS: added winner method where if you correctly place all the mines, you win the game.
 HOME: tried to debug Giridhar's dig method but it still doesnt work
+
+## June 7
+a lot of merge conflicts but finally merged
+
+## June 9
+trying to make it so that minecounter doesnt count incorrectly placed flags towards the winner method
