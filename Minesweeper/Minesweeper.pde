@@ -174,7 +174,8 @@ void mouseClicked() {
 public void dig(int row, int col, int x, int y){ 
   mineMap.getTile(row, col).HIDDEN = false;
   text((mineMap.getTile(row, col).getNeighbors()), corner(x) + 45, corner(y)+55);
-  if(mineMap.getTile(row, col).getNeighbors()==0 && row> 0 && row  < mineMap.lengthRow()-1 && col > 0 && col < mineMap.lengthCol()-1){
+  if(row> 0 && row  < mineMap.lengthRow()-1 && col > 0 && col < mineMap.lengthCol()-1){
+    if (mineMap.getTile(row, col).getNeighbors()==0){
     if(mineMap.getTile(row-1, col).getHidden() && !mineMap.getTile(row-1, col).hasMine()) dig(row-1, col, x, y  -SQUARE_SIZE);
     if(mineMap.getTile(row+1, col).getHidden() && !mineMap.getTile(row+1, col).hasMine()) dig(row+1, col, x , y+ SQUARE_SIZE);
     if(mineMap.getTile(row+1, col-1).getHidden() && !mineMap.getTile(row+1, col-1).hasMine()) dig(row+1, col -1 , x - SQUARE_SIZE , y+ SQUARE_SIZE); // changed this
@@ -183,6 +184,39 @@ public void dig(int row, int col, int x, int y){
     if(mineMap.getTile(row-1, col-1).getHidden() && !mineMap.getTile(row-1, col-1).hasMine()) dig(row-1, col-1, x- SQUARE_SIZE, y - SQUARE_SIZE);
     if(mineMap.getTile(row+1, col+1).getHidden() && !mineMap.getTile(row+1, col+1).hasMine()) dig(row+1, col+1, x+ SQUARE_SIZE, y +SQUARE_SIZE);
     if(mineMap.getTile(row-1, col+1).getHidden() && !mineMap.getTile(row-1, col+1).hasMine()) dig(row-1, col+1, x+ SQUARE_SIZE, y - SQUARE_SIZE );
+    }
+  }
+  else {
+    if (mineMap.getTile(row, col).getNeighbors()==0){
+      if (row == 0 && col == 0){ //top left corner
+        dig(row+1, col+1, x+ SQUARE_SIZE, y +SQUARE_SIZE);
+        dig(row, col+1, x+SQUARE_SIZE, y);
+        dig(row+1, col, x , y+ SQUARE_SIZE);
+      }
+      if (row == 0 && col == mineMap.lengthRow()-1){ //top right corner
+        dig(row+1, col -1 , x - SQUARE_SIZE , y+ SQUARE_SIZE);
+        dig(row, col-1, x- SQUARE_SIZE, y );
+        dig(row+1, col, x , y+ SQUARE_SIZE);
+      }
+      if (row == mineMap.lengthRow() -1 && col ==mineMap.lengthRow()-1){ //bottom right corner
+        dig(row-1, col-1, x- SQUARE_SIZE, y - SQUARE_SIZE);
+        dig(row-1, col, x, y  -SQUARE_SIZE);
+        dig(row, col-1, x- SQUARE_SIZE, y );
+      }
+      if (row == mineMap.lengthRow()-1 && col == 0){
+        dig(row-1, col+1, x+ SQUARE_SIZE, y - SQUARE_SIZE );
+        dig(row, col+1, x+SQUARE_SIZE, y);
+        dig(row-1, col, x, y  -SQUARE_SIZE);
+      }
+      //top edge
+      //if (row == 0 && col != 0 && col != mineMap.lengthRow() -1){
+      //  dig(row, col-1, x- SQUARE_SIZE, y );
+      //  dig(row-1, col-1, x- SQUARE_SIZE, y - SQUARE_SIZE);
+      //  dig(row+1, col, x , y+ SQUARE_SIZE);
+      //  dig(row+1, col+1, x+ SQUARE_SIZE, y +SQUARE_SIZE);
+      //  dig(row, col+1, x+SQUARE_SIZE, y);
+      //}
+    }
   }
 
 
