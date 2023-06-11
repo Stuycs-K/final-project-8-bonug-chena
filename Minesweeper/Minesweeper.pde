@@ -174,44 +174,32 @@ void mouseClicked() {
 public void dig(int row, int col, int x, int y){ 
   mineMap.getTile(row, col).HIDDEN = false;
   text((mineMap.getTile(row, col).getNeighbors()), corner(x) + 45, corner(y)+55);
-  if(mineMap.getTile(row, col).getNeighbors()==0 && row> 0 && row  < mineMap.lengthRow()-1 && col > 0 && col < mineMap.lengthCol()-1){
-    if(mineMap.getTile(row-1, col).getHidden() && !mineMap.getTile(row-1, col).hasMine()) dig(row-1, col, x, y  -SQUARE_SIZE);
-          if(mineMap.getTile(row+1, col).getHidden() && !mineMap.getTile(row+1, col).hasMine()) dig(row+1, col, x , y+ SQUARE_SIZE);
-          if(mineMap.getTile(row, col+1).getHidden() && !mineMap.getTile(row, col+1).hasMine())  dig(row, col+1, x+SQUARE_SIZE, y);
-          if(mineMap.getTile(row, col-1).getHidden() && !mineMap.getTile(row, col-1).hasMine()) dig(row, col-1, x- SQUARE_SIZE, y );
-  }
-  //println("row: " + row + "    col: " + col + "        x: " + x + "    y: " + y);
-  if(row> 0 && row  < mineMap.lengthRow()-1 && col > 0 && col < mineMap.lengthCol()-1){
-      if(mineMap.getTile(row-1, col).getNeighbors() == 0 && mineMap.getTile(row-1, col).getHidden()){
-    dig(row-1, col, x, y  -SQUARE_SIZE);
-  }
-  
-  if(mineMap.getTile(row+1, col).getNeighbors() == 0 && mineMap.getTile(row+1, col).getHidden()){
-    dig(row+1, col, x , y+ SQUARE_SIZE);
-  }
-  if(mineMap.getTile(row, col+1).getNeighbors() == 0 && mineMap.getTile(row, col+1).getHidden()){
-    dig(row, col+1, x+SQUARE_SIZE, y);
-  }
-  if(mineMap.getTile(row, col-1).getNeighbors() == 0 && mineMap.getTile(row, col-1).getHidden()){
-    dig(row, col-1, x- SQUARE_SIZE, y );
-  }
-  
-  if(mineMap.getTile(row-1, col-1).getNeighbors() == 0 && mineMap.getTile(row-1, col-1).getHidden()){
-    dig(row-1, col-1, x -SQUARE_SIZE, y- SQUARE_SIZE);
-  }
-  
-  if(mineMap.getTile(row-1, col+1).getNeighbors() == 0){
-    dig(row-1, col +1, x - SQUARE_SIZE, y+ SQUARE_SIZE);
-  }
-  
-  if(mineMap.getTile(row+1, col+1).getNeighbors() == 0 && mineMap.getTile(row+1, col+1).getHidden()){
-    dig(row+1, col+1, x +SQUARE_SIZE, y + SQUARE_SIZE);
-  }
-  if(mineMap.getTile(row+1, col-1).getNeighbors() == 0 && mineMap.getTile(row+1, col-1).getHidden()){
-    dig(row+1, col-1, x +SQUARE_SIZE, y-SQUARE_SIZE);
-  }
-  
-  }
+   if (mineMap.getTile(row, col).getNeighbors()==0){
+     if (row > 0 && col > 0){
+       if(mineMap.getTile(row-1, col-1).getHidden() && !mineMap.getTile(row-1, col-1).hasMine()) dig(row-1, col-1, x- SQUARE_SIZE, y - SQUARE_SIZE);
+     }
+     if (row > 0){
+       if(mineMap.getTile(row-1, col).getHidden() && !mineMap.getTile(row-1, col).hasMine()) dig(row-1, col, x, y  -SQUARE_SIZE);
+     }
+     if (row > 0 && col < mineMap.lengthRow()-1){
+       if(mineMap.getTile(row-1, col+1).getHidden() && !mineMap.getTile(row-1, col+1).hasMine()) dig(row-1, col+1, x+ SQUARE_SIZE, y - SQUARE_SIZE );
+     }
+     if (col > 0){
+       if(mineMap.getTile(row, col-1).getHidden() && !mineMap.getTile(row, col-1).hasMine()) dig(row, col-1, x- SQUARE_SIZE, y );
+     }
+     if (col < mineMap.lengthCol() -1){
+       if(mineMap.getTile(row, col+1).getHidden() && !mineMap.getTile(row, col+1).hasMine())  dig(row, col+1, x+SQUARE_SIZE, y);
+     }
+     if (row < mineMap.lengthRow() -1 && col > 0){
+       if(mineMap.getTile(row+1, col-1).getHidden() && !mineMap.getTile(row+1, col-1).hasMine()) dig(row+1, col -1 , x - SQUARE_SIZE , y+ SQUARE_SIZE); // changed this
+     }
+     if (row < mineMap.lengthRow() -1){
+       if(mineMap.getTile(row+1, col).getHidden() && !mineMap.getTile(row+1, col).hasMine()) dig(row+1, col, x , y+ SQUARE_SIZE);
+     }
+     if (row < mineMap.lengthRow() -1 && col < mineMap.lengthCol() -1){
+       if(mineMap.getTile(row+1, col+1).getHidden() && !mineMap.getTile(row+1, col+1).hasMine()) dig(row+1, col+1, x+ SQUARE_SIZE, y +SQUARE_SIZE);
+     }
+   }
 }
 
 
