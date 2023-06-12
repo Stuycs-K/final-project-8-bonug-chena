@@ -101,14 +101,14 @@ void keyPressed(){
 }
 
 public void deflagButton(){
-  makeSquare(825, 250, 0);
+  //makeSquare(825, 250, 0);
   textSize(22);
   fill(0, 0, 0);
   if(DEFLAG){
-    image(img2, 826,251,SQUARE_SIZE-1, SQUARE_SIZE-1);
+    image(img2, 826,251, 100-1, 100-1);
   } 
   else {
-    image(img, 826,251,SQUARE_SIZE-1, SQUARE_SIZE-1);
+    image(img, 826,251,100-1, 100-1);
   }
   textSize(130);
   text("X", 840, 340);
@@ -277,15 +277,15 @@ public void grid() {
 }
 
 void flagButton(){
-  makeSquare(825, 100, 60);
+  //makeSquare(825, 100, 60);
   textSize(22);
   fill(100, 100, 100);
   text("Flag placer", 825, 220);
   if(FLAGPRESSED){
-    image(img2, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+    image(img2, 826,101,100-1, 100-1);
   } 
   else {
-    image(img, 826,101,SQUARE_SIZE-1, SQUARE_SIZE-1);
+    image(img, 826,101,100-1, 100-1);
   }
 }
 
