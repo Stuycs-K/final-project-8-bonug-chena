@@ -50,8 +50,8 @@ int corner(int x) {
 }
 
 void draw() {
-  textSize(22);
-  minesLeft();
+  //textSize(22);
+  //minesLeft();
   flagButton();
   newGameButton();
   deflagButton();
@@ -62,28 +62,12 @@ void draw() {
   }
 }
 
-void keyPressed() {
-  //diff ++;
-  //if (diff == 3){
-  //  diff = 0;
-  //}
-  //NEWMAP = true;
-  //for demo purposes, delete later - reveals where all the bombs are
-  for (int x = 0; x < 800; x += SQUARE_SIZE) {
-    for (int y = 0; y <800; y+= SQUARE_SIZE) {
-      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
-        makeSquare(corner(x), corner(y), 100);
-      }
-    }
-  }
-}
-
 void difficultyButton() {
   stroke(225);
   fill(250);
   rect(825, 400, 100, 50);
   fill(0);
-  text("Difficulty:", 830, 420);
+  text("Difficulty:", 830,420);
   if (diff == 0) {
     text("Easy", 830, 440);
   }
@@ -120,12 +104,22 @@ public void deflag(int x, int y) {
   minesLeft();
 }
 
+void keyPressed() {
+  //for demo purposes, delete later - reveals where all the bombs are
+  for (int x = 0; x < 800; x += SQUARE_SIZE) {
+    for (int y = 0; y <800; y+= SQUARE_SIZE) {
+      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+        makeSquare(corner(x), corner(y), 100);
+      }
+    }
+  }
+}
 
 public void deflagButton() {
   //makeSquare(825, 250, 0);
   stroke(0);
   textSize(22);
-  //fill(0, 0, 0);
+  fill(0, 0, 0);
   //makeSquare(825, 250, 60);
   if (DEFLAG) {
     image(img2, 826, 251, 100-1, 100-1);
@@ -202,10 +196,9 @@ void mouseClicked() {
           int col = x/SQUARE_SIZE;
           dig(row, col, x, y);
         } else {
-          makeSquare(corner(x), corner(y), 220);
           mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).HIDDEN = false;
           if (diff == 1) {
-            textSize(30);
+            textSize(22);
           }
           if (diff == 0) {
             textSize(50);
@@ -213,6 +206,7 @@ void mouseClicked() {
           if (diff == 2) {
             textSize(15);
           }
+          makeSquare(corner(x), corner(y), 220);
           int neigh = mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors();
           if (neigh == 1) {
             fill(0, 0, 225);
@@ -232,6 +226,8 @@ void mouseClicked() {
           if (neigh >5) {
             fill(0);
           }
+    //text((mineMap.getTile(row, col).getNeighbors()), corner(x) + SQUARE_SIZE * .45, corner(y)+SQUARE_SIZE*.55);
+
           text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + SQUARE_SIZE *.45, corner(y)+SQUARE_SIZE *.55);
         }
       }
@@ -259,7 +255,7 @@ void mouseClicked() {
 public void dig(int row, int col, int x, int y) {
   mineMap.getTile(row, col).HIDDEN = false;
   if (diff == 1) {
-    textSize(30);
+    textSize(22);
   }
   if (diff == 0) {
     textSize(50);
@@ -267,11 +263,9 @@ public void dig(int row, int col, int x, int y) {
   if (diff == 2) {
     textSize(15);
   }
-  //text((mineMap.getTile(row, col).getNeighbors()), corner(x) + SQUARE_SIZE * .45, corner(y)+SQUARE_SIZE*.55);
-  makeSquare(corner(x), corner(y), 220);
-  if (mineMap.getTile(row, col).getNeighbors()!=0) {
+   makeSquare(corner(x), corner(y), 220);
+   if (mineMap.getTile(row, col).getNeighbors()!=0) {
     int neigh = mineMap.getTile(row, col).getNeighbors();
-    //int col = 0;
     if (neigh == 1) {
             fill(0, 0, 225);
           }
@@ -291,7 +285,8 @@ public void dig(int row, int col, int x, int y) {
             fill(0);
           }
     text((mineMap.getTile(row, col).getNeighbors()), corner(x) + SQUARE_SIZE * .45, corner(y)+SQUARE_SIZE*.55);
-  } else {
+   }
+  else {
     if (row > 0 && col > 0) {
       if (mineMap.getTile(row-1, col-1).getHidden() && !mineMap.getTile(row-1, col-1).hasMine()) dig(row-1, col-1, x- SQUARE_SIZE, y - SQUARE_SIZE);
     }
@@ -350,7 +345,7 @@ void flagButton() {
   textSize(22);
   stroke(0);
   //makeSquare(825, 100, 60);
-  //fill(100, 100, 100);
+  fill(100, 100, 100);
   text("Flag placer", 825, 220);
   if (FLAGPRESSED) {
     image(img2, 826, 101, 100-1, 100-1);
@@ -383,8 +378,7 @@ public void newGameButton() {
 }
 
 
-public void end(){
-  /*
+public void end() {
   END = true;
   fill(206);
   stroke(0);
@@ -397,17 +391,6 @@ public void end(){
   text("to play again.", 100, 560);
   textSize(22);
   text("Mines Left: 0", 810, 790);
-  */
-  END = true;
-  for (int x = 0; x < 800; x += SQUARE_SIZE) {
-    for (int y = 0; y <800; y+= SQUARE_SIZE) {
-       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
-          makeSquare(corner(x), corner(y), 100);
-       }
-
-    }
-  }
-
 }
 
 public void winner() {
@@ -423,6 +406,12 @@ public void winner() {
   text("Mines Left: 0", 810, 790);
 }
 
+
+/*
+if a tile has a flag already, u cant press and reveal number
+ if a tile is a mine and has a flag, u cant press on it and die
+ add method to unflag a tile
+ */
 
 /*
 if a tile has a flag already, u cant press and reveal number
