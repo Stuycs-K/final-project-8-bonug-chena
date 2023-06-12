@@ -318,6 +318,7 @@ public void newGameButton() {
 
 
 public void end(){
+  /*
   END = true;
   fill(206);
   stroke(0);
@@ -330,6 +331,16 @@ public void end(){
   text("to play again.", 100, 560);
   textSize(22);
   text("Mines Left: 0", 810, 790);
+  */
+  END = true;
+  for (int x = 0; x < 800; x += SQUARE_SIZE) {
+    for (int y = 0; y <800; y+= SQUARE_SIZE) {
+       if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+          makeSquare(corner(x), corner(y), 100);
+       }
+
+    }
+  }
 
 }
 
