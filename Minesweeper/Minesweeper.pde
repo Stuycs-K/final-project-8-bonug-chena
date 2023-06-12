@@ -13,6 +13,7 @@ private int mineCounter = 0;
 private int totalMines = 0; //also counts incorrectly placed mines
 private int MINESLEFT;
 int countdown = 0;
+private boolean WINNER;
 
 void setup() {
   diff = 1;
@@ -29,6 +30,7 @@ void setup() {
 
 public void Board() {
   END = false;
+  WINNER = false;
   mineMap = new Board(diff);
   if (diff == 0) {
     SQUARE_SIZE = 200;
@@ -66,9 +68,14 @@ void draw() {
     countdown --;
   }
   textSize(100);
-  if (END){
+  if (END && !WINNER){
     if (countdown == 0){
     text("Try again.", 200, 270);
+    }
+  }
+  if (END && WINNER){
+    if (countdown == 0){
+    text("Congrats!", 200, 270);
     }
   }
 }
@@ -414,15 +421,17 @@ public void end() {
 
 public void winner() {
   END = true;
-  fill(206);
-  stroke(0);
-  square(0, 0, width);
-  textSize(100);
-  fill(0, 0, 0);
-  text("Congrats, you ", 100, 360);
-  text("found all mines!", 100, 460);
-  textSize(22);
-  text("Mines Left: 0", 810, 790);
+  WINNER = true;
+  //fill(206);
+  //stroke(0);
+  //square(0, 0, width);
+  //textSize(100);
+  //fill(0, 0, 0);
+  //text("Congrats, you ", 100, 360);
+  //text("found all mines!", 100, 460);
+  //textSize(22);
+  //text("Mines Left: 0", 810, 790);
+  countdown = 5;
 }
 
 
