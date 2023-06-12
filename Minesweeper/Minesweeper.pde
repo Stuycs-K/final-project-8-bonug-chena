@@ -12,6 +12,7 @@ private int boardMines;
 private int mineCounter = 0;
 private int totalMines = 0; //also counts incorrectly placed mines
 private int MINESLEFT;
+int countdown = 0;
 
 void setup() {
   diff = 1;
@@ -23,6 +24,7 @@ void setup() {
   minesLeft();
   img = loadImage("flag.png");
   img2 = loadImage("flagOn.png");
+  countdown = 0;
 }
 
 public void Board() {
@@ -59,6 +61,15 @@ void draw() {
   if (NEWMAP) {
     Board();
     grid();
+  }
+  if (countdown > 0){
+    countdown --;
+  }
+  textSize(100);
+  if (END){
+    if (countdown == 0){
+    text("Try again.", 200, 270);
+    }
   }
 }
 
@@ -380,18 +391,26 @@ public void newGameButton() {
 
 public void end() {
   END = true;
-  fill(206);
-  stroke(0);
-  square(0, 0, width-150);
+  //fill(206);
+  //stroke(0);
+  //square(0, 0, width-150);
   textSize(100);
   fill(0, 0, 0);
-  text("Game over.", 100, 260);
-  text("Goodbye. Press", 100, 360);
-  text("\"New Game\"", 100, 460);
-  text("to play again.", 100, 560);
-  textSize(22);
-  text("Mines Left: 0", 810, 790);
+  //text("Goodbye. Press", 100, 360);
+  //text("\"New Game\"", 100, 460);
+  //text("to play again.", 100, 560);
+  //textSize(22);
+  //text("Mines Left: 0", 810, 790);
+  for (int x = 0; x < 800; x += SQUARE_SIZE) {
+    for (int y = 0; y <800; y+= SQUARE_SIZE) {
+      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+        makeSquare(corner(x), corner(y), 100);
+      }
+    }
+  }
+  countdown = 40;
 }
+
 
 public void winner() {
   END = true;
