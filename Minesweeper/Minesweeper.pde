@@ -60,10 +60,10 @@ void draw() {
     Board();
     grid();
   }
-  rect(800, 0, 1, 800);
 }
 
 void difficultyButton() {
+  stroke(0);
   fill(250);
   rect(825, 450, 100, 50);
   fill(0);
@@ -117,8 +117,10 @@ void keyPressed() {
 
 public void deflagButton() {
   //makeSquare(825, 250, 0);
+  stroke(0);
   textSize(22);
   fill(0, 0, 0);
+  makeSquare(825, 250, 60);
   if (DEFLAG) {
     image(img2, 826, 251, 100-1, 100-1);
   } else {
@@ -134,7 +136,6 @@ public void deflagButton() {
 
 
 void mouseClicked() {
-
   int x = mouseX;
   int y = mouseY;
   if (x<925 && x>825 && y >20 && y <70) {
@@ -298,6 +299,8 @@ public void grid() {
 void flagButton() {
   //makeSquare(825, 100, 60);
   textSize(22);
+  stroke(0);
+  makeSquare(825, 100, 60);
   fill(100, 100, 100);
   text("Flag placer", 825, 220);
   if (FLAGPRESSED) {
@@ -323,6 +326,7 @@ void minesLeft() {
 
 public void newGameButton() {
   fill(255);
+  stroke(0);
   rect(825, 20, 100, 50);
   fill(0);
   textSize(20);
@@ -334,7 +338,7 @@ public void end() {
   END = true;
   fill(206);
   stroke(0);
-  square(0, 0, width);
+  square(0, 0, width-150);
   textSize(100);
   fill(0, 0, 0);
   text("Game over.", 100, 260);
