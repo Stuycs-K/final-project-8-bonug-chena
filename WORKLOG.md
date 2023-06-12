@@ -67,3 +67,25 @@ Got the flag methods to work for the most part and added a new game button
 
 ## May 30
 CLASS: Fixed merge conflicts and merged the working code to main, made it so that number are revealed when tile is pressed and flag methods workish.
+
+HOME: fixed bug where bottom row wasn't displaying the correct numbers, tried to add deflag method but does not work.
+
+## May 31
+Added deflag button and redid deflag since the original deflag was not working. Made a keypressed that reveals where are the mines are for the demo
+
+## June 1
+Worked on demo branch, tried to fix deflag methods
+
+## June 5
+made it so that if all the mines are properly flagged, a winner screen appears
+
+## June 6
+CLASS: added winner method where if you correctly place all the mines, you win the game.
+HOME: tried to debug Giridhar's dig method but it still doesnt work
+
+## June 7
+trying to make it so that minecounter doesnt count incorrectly placed flags towards the winner method
+fixed bugs with the winner method (made it so that deflagging an empty tile doesnt reveal a number, deflagging an empty space doesnt decrease the totalmine number, and so that you can't flag something that already has a flag)
+
+## June 9
+finally debugged Giridhar's dig method and got it to work i hope.

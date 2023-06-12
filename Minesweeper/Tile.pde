@@ -5,6 +5,8 @@ public class Tile{
   private int NEIGHBORS ;
 
   public Tile(){
+    FLAG = false;
+    HIDDEN = true;
     double random = Math.random();
     if (random < .3){
       MINE = true;
@@ -12,8 +14,6 @@ public class Tile{
     else {
       MINE = false;
     }
-    FLAG = false;
-    HIDDEN = true;
   }
 
   public boolean hasMine(){
@@ -30,7 +30,7 @@ public class Tile{
   }
 
   public boolean hasFlag(){
-    return this.FLAG;
+    return FLAG;
   }
 
   public int getNeighbors(){

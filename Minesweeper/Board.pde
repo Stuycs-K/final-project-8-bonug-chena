@@ -16,10 +16,19 @@ mineMap = new Tile[width/SQUARE_SIZE][height/SQUARE_SIZE];
 for(int x = 0; x < mineMap.length; x ++){
   for(int y = 0; y < mineMap[x].length; y++){
       mineMap[x][y] = new Tile();
+      if (mineMap[x][y].hasMine()) {
+          MINES ++;
+      }
     }
   }
   numSet();
 }
+
+public int getMineNum(){
+  return MINES;
+}
+
+
   public void numSet(){
     for(int row = 0; row <  mineMap.length; row++){
       for(int col = 0; col< mineMap[row].length; col++){
@@ -30,9 +39,9 @@ for(int x = 0; x < mineMap.length; x ++){
       }
     }
   }
- 
- 
- 
+
+
+
   public int surroundingMines(int row, int col){
     int neighbors = 0;
     if(row == 0 && col == 0){ //left top corner
@@ -104,15 +113,24 @@ for(int x = 0; x < mineMap.length; x ++){
     return mineMap[row][col];
   }
 
-  public int lengthRow(){
+    public int lengthRow(){
     return mineMap.length;
   }
-  
+
   public int lengthCol(){
     return mineMap[0].length;
   }
-  
-  
+
+
+  public int lengthRow(){
+    return mineMap.length;
+  }
+
+  public int lengthCol(){
+    return mineMap[0].length;
+  }
+
+
 
 //  public void  mineMaker(){
 //    for (int i = 0; i < mineMap.length; i ++){
