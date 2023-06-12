@@ -72,7 +72,7 @@ void draw() {
   }
   textSize(100);
   if (END && !WINNER){
-    if (countdown == 0){
+    if (countdown == 50){
     text("Try again.", 200, 270);
     }
     if (countdown == 99){
@@ -143,9 +143,9 @@ public void deflag(int x, int y) {
 public void hintButton(){
   stroke(225);
   fill(250);
-  rect(825, 500, 100, 50);
+  rect(825, 475, 100, 50);
   fill(0);
-  text("hint", 860, 530);
+  text("Hint", 860, 505);
 }
 
 public void deflagButton() {
@@ -174,7 +174,7 @@ void mouseClicked() {
   if (x<925 && x>825 && y >20 && y <70) {
     NEWMAP= true;
   }
-  if (x<925 && x>825 && y >500 && y <550) {//hint button
+  if (x<925 && x>825 && y >475 && y <525) {//hint button
     for(int row = 0; row  < mineMap.lengthRow(); row++){
       for(int col = 0; col < mineMap.lengthCol(); col++){
         if(!mineMap.getTile(row, col).hasMine() && mineMap.getTile(row, col).getHidden()){
@@ -449,7 +449,7 @@ public void end() {
   endX = mouseX;
   endY = mouseY;
   fill(0);
-  countdown = 200;
+  countdown = 150;
 
 }
 
