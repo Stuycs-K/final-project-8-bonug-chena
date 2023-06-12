@@ -206,6 +206,28 @@ void mouseClicked() {
           if (diff == 2) {
             textSize(15);
           }
+          makeSquare(corner(x), corner(y), 220);
+          int neigh = mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors();
+          if (neigh == 1) {
+            fill(0, 0, 225);
+          }
+          if (neigh == 2) {
+            fill(0, 153, 0);
+          }
+          if (neigh == 3) {
+            fill(255, 0, 0);
+          }
+          if (neigh == 4) {
+            fill(0, 0, 102);
+          }
+          if (neigh == 5) {
+            fill(102, 0, 0);
+          }
+          if (neigh >5) {
+            fill(0);
+          }
+    //text((mineMap.getTile(row, col).getNeighbors()), corner(x) + SQUARE_SIZE * .45, corner(y)+SQUARE_SIZE*.55);
+
           text((mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).getNeighbors()), corner(x) + SQUARE_SIZE *.45, corner(y)+SQUARE_SIZE *.55);
         }
       }
@@ -241,8 +263,30 @@ public void dig(int row, int col, int x, int y) {
   if (diff == 2) {
     textSize(15);
   }
-  text((mineMap.getTile(row, col).getNeighbors()), corner(x) + SQUARE_SIZE * .45, corner(y)+SQUARE_SIZE*.55);
-  if (mineMap.getTile(row, col).getNeighbors()==0) {
+   makeSquare(corner(x), corner(y), 220);
+   if (mineMap.getTile(row, col).getNeighbors()!=0) {
+    int neigh = mineMap.getTile(row, col).getNeighbors();
+    if (neigh == 1) {
+            fill(0, 0, 225);
+          }
+          if (neigh == 2) {
+            fill(0, 153, 0);
+          }
+          if (neigh == 3) {
+            fill(255, 0, 0);
+          }
+          if (neigh == 4) {
+            fill(0, 0, 102);
+          }
+          if (neigh == 5) {
+            fill(102, 0, 0);
+          }
+          if (neigh >5) {
+            fill(0);
+          }
+    text((mineMap.getTile(row, col).getNeighbors()), corner(x) + SQUARE_SIZE * .45, corner(y)+SQUARE_SIZE*.55);
+   }
+  else {
     if (row > 0 && col > 0) {
       if (mineMap.getTile(row-1, col-1).getHidden() && !mineMap.getTile(row-1, col-1).hasMine()) dig(row-1, col-1, x- SQUARE_SIZE, y - SQUARE_SIZE);
     }
