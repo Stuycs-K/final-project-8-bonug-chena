@@ -34,6 +34,9 @@ worked on dig function again. created an easy way to tell when your flag is on a
 # june 7
 trying to toggle difficulty levels
 
+# june 12
+fixed the difficulty toggle and merge conflicts, wrote the readme, updated the uml and prototype. also added a hint feature
+
 ## Alena Chen
 
 ### May 22
