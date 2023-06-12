@@ -56,11 +56,13 @@ void draw() {
   newGameButton();
   deflagButton();
   difficultyButton();
+  hintButton();
   if (NEWMAP) {
     Board();
     grid();
   }
 }
+
 
 void keyPressed() {
   //diff ++;
@@ -120,6 +122,13 @@ public void deflag(int x, int y) {
   minesLeft();
 }
 
+public void hintButton(){
+  stroke(225);
+  fill(250);
+  rect(825, 500, 100, 50);
+  fill(0);
+  text("hint", 860, 530);
+}
 
 public void deflagButton() {
   //makeSquare(825, 250, 0);
@@ -147,7 +156,19 @@ void mouseClicked() {
   if (x<925 && x>825 && y >20 && y <70) {
     NEWMAP= true;
   }
-
+  if (x<925 && x>825 && y >500 && y <550) {//hint button
+    for(int row = 0; row  < mineMap.lengthRow(); row++){
+      for(int col = 0; col < mineMap.lengthCol(); col++){
+        if(!mineMap.getTile(row, col).hasMine() && mineMap.getTile(row, col).getHidden()){
+          int ycor = row * SQUARE_SIZE;
+          int xcor = col * SQUARE_SIZE;
+          dig(row, col, xcor, ycor);
+          row = mineMap.lengthRow();
+          break;
+        }
+      }
+    }
+  }
 
   if (x<925 && x>825 && y > 400 && y < 450) {
     diff++;
@@ -254,6 +275,7 @@ void mouseClicked() {
 //first check if its zero
 //if its zero, then go to all surrounding squares
 //if its not zero, stop there
+
 
 
 public void dig(int row, int col, int x, int y) {
@@ -407,6 +429,8 @@ public void end(){
 
     }
   }
+  fill(0);
+  text("Game over.", 800, 600);
 
 }
 
