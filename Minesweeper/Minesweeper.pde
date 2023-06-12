@@ -301,7 +301,7 @@ void minesLeft(){
   stroke(col);
   rect(803, 750, 150, 50);
   fill(0);
-  String mines = "Mines Left: " + MINESLEFT;
+  String mines = "Flags Left: " + MINESLEFT;
   text(mines, 810, 790);
 }
 
