@@ -76,12 +76,19 @@ void draw() {
     text("Try again.", 200, 270);
     }
     if (countdown == 99){
+      grid();
       for (int x = 0; x < 800; x += SQUARE_SIZE) {
         for (int y = 0; y <800; y+= SQUARE_SIZE) {
-          if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+          if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine() && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag()) {
               makeSquare(corner(x), corner(y), 100);
               stroke(0);
               fill(250,0,0);
+              textSize(SQUARE_SIZE *1.2);
+              text("X", corner(endX)+ SQUARE_SIZE/5, corner(endY +SQUARE_SIZE) - SQUARE_SIZE/8);
+              fill(0);
+          }
+          if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasFlag() && !mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()){
+            fill(250,0,0);
               textSize(SQUARE_SIZE *1.2);
               text("X", corner(endX)+ SQUARE_SIZE/5, corner(endY +SQUARE_SIZE) - SQUARE_SIZE/8);
               fill(0);
@@ -309,6 +316,7 @@ public void dig(int row, int col, int x, int y) {
   if (diff == 2) {
     textSize(15);
   }
+  if (!mineMap.getTile(row, col).hasFlag()){
    makeSquare(corner(x), corner(y), 220);
    if (mineMap.getTile(row, col).getNeighbors()!=0) {
     int neigh = mineMap.getTile(row, col).getNeighbors();
@@ -358,6 +366,7 @@ public void dig(int row, int col, int x, int y) {
       if (mineMap.getTile(row+1, col+1).getHidden() && !mineMap.getTile(row+1, col+1).hasMine()) dig(row+1, col+1, x+ SQUARE_SIZE, y +SQUARE_SIZE);
     }
   }
+}
 }
 
 
