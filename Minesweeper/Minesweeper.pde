@@ -85,14 +85,14 @@ void placeFlag(int x, int y) {
   //image(img, corner(x) +1, corner(y)+1, SQUARE_SIZE-1, SQUARE_SIZE-1);
   stroke(0);
   fill(0);
-  rect(corner(x)+25, corner(y)+75, 50, 10);
-  rect(corner(x)+45, corner(y)+55, 10, 25);
+  rect(corner(x)+ SQUARE_SIZE /4, corner(y)  + (3* SQUARE_SIZE)/4, SQUARE_SIZE/2, SQUARE_SIZE/10);
+  rect(corner(x)+SQUARE_SIZE*.45, corner(y) +SQUARE_SIZE*.55, SQUARE_SIZE/10, SQUARE_SIZE/4);
   stroke(225, 0, 0);
   fill(225, 0, 0);
-  rect(corner(x)+45, corner(y)+20, 10, 35);
+  rect(corner(x)+SQUARE_SIZE*.45, corner(y)+SQUARE_SIZE/5, SQUARE_SIZE/10, SQUARE_SIZE *.35);  
   stroke(255, 49, 49);
   fill(255, 49, 49);
-  triangle(corner(x)+45, corner(y)+20, corner(x)+10, corner(y)+37.5, corner(x)+45, corner(y)+55);
+  triangle(corner(x)+SQUARE_SIZE *.45, corner(y)+SQUARE_SIZE/5, corner(x)+SQUARE_SIZE/10, corner(y)+ SQUARE_SIZE*.375, corner(x)+SQUARE_SIZE*.45, corner(y)+ SQUARE_SIZE*.55);
   minesLeft();
   //text(""+mineMap.getTile(y/SQUARE_SIZE,x/SQUARE_SIZE).FLAG,x,y);
   //System.out.println(""+ mineMap.getTile(x/SQUARE_SIZE,y/SQUARE_SIZE).hasFlag());
