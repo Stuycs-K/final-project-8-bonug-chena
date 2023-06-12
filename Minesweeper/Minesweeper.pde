@@ -14,6 +14,8 @@ private int totalMines = 0; //also counts incorrectly placed mines
 private int MINESLEFT;
 int countdown = 0;
 private boolean WINNER;
+private int endX;
+private int endY;
 
 void setup() {
   diff = 1;
@@ -73,17 +75,22 @@ void draw() {
     if (countdown == 0){
     text("Try again.", 200, 270);
     }
-    if (countdown ==99){
+    if (countdown == 99){
       for (int x = 0; x < 800; x += SQUARE_SIZE) {
         for (int y = 0; y <800; y+= SQUARE_SIZE) {
           if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
               makeSquare(corner(x), corner(y), 100);
-
+              stroke(0);
+              fill(250,0,0);
+              textSize(SQUARE_SIZE *1.2);
+              text("X", corner(endX)+ SQUARE_SIZE/5, corner(endY +SQUARE_SIZE) - SQUARE_SIZE/8);
+              fill(0);
           }
         }
       }
     }
   }
+  textSize(100);
   if (END && WINNER){
     if (countdown == 0){
     text("Congrats!", 200, 270);
@@ -429,15 +436,20 @@ public void end() {
   //text("to play again.", 100, 560);
   //textSize(22);
   //text("Mines Left: 0", 810, 790);
-  for (int x = 0; x < 800; x += SQUARE_SIZE) {
-    for (int y = 0; y <800; y+= SQUARE_SIZE) {
-      if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
-        makeSquare(corner(x), corner(y), 100);
-      }
-    }
-  }
+  //for (int x = 0; x < 800; x += SQUARE_SIZE) {
+  //  for (int y = 0; y <800; y+= SQUARE_SIZE) {
+  //    if (mineMap.getTile(y/SQUARE_SIZE, x/SQUARE_SIZE).hasMine()) {
+  //      makeSquare(corner(x), corner(y), 100);
+  //    }
+  //  }
+  //}
+  fill(250, 0, 0);
+  textSize(SQUARE_SIZE *1.2);
+  text("X", corner(mouseX)+ SQUARE_SIZE/5, corner(mouseY +SQUARE_SIZE) - SQUARE_SIZE/8);
+  endX = mouseX;
+  endY = mouseY;
   fill(0);
-  countdown = 40;
+  countdown = 200;
 
 }
 
