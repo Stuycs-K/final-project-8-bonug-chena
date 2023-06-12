@@ -1,7 +1,7 @@
 public class Board{
   private Tile[][] mineMap;
   private int SQUARE_SIZE;
-  private int MINES;
+  private int MINES=0;
 
 public Board(int diff) {
   if(diff == 0){
@@ -16,6 +16,7 @@ public Board(int diff) {
     SQUARE_SIZE = 50;
     mineMap = new Tile[16][16];
   }
+
 for(int x = 0; x < mineMap.length; x ++){
   for(int y = 0; y < mineMap[x].length; y++){
       mineMap[x][y] = new Tile();
