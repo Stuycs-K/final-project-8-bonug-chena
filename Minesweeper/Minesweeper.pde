@@ -427,7 +427,6 @@ public void end() {
     }
   }
   fill(0);
-  text("Game over.", 800, 600);
   countdown = 40;
 
 }
