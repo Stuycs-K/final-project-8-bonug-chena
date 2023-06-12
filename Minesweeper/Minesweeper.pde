@@ -22,7 +22,16 @@ void setup() {
 
   public void Board() {
     END = false;
-    mineMap = new Board(1);
+    mineMap = new Board(diff);
+    if(diff == 0){
+     SQUARE_SIZE = 200;
+   }
+   if(diff == 1){
+     SQUARE_SIZE = 100;
+   }
+   if(diff ==2){
+     SQUARE_SIZE = 50;
+   }
   }
 
   int corner(int x) {
@@ -41,8 +50,19 @@ void draw() {
 }
 
 void difficultyButton(){
-    fill(0);
-   rect(825, 450, SQUARE_SIZE, 50);
+    fill(250);
+   rect(825, 450, 100, 50);
+   fill(0);
+   text("Difficulty:", 830, 470);
+   if(diff == 0){
+     text("easy", 830, 490);
+   }
+   if(diff == 1){
+     text("medium", 830, 490);
+   }
+   if(diff ==2){
+     text("hard", 830, 490);
+   }
    
 }
 
@@ -107,6 +127,11 @@ void mouseClicked() {
   if (x<925 && x>825 && y >20 && y <70) {
     NEWMAP= true;
   }
+  if(x<925 && x>825 && y > 450 && y < 500){
+    diff++;
+    if(diff> 2) diff = 0;
+    NEWMAP = true;
+  }
   if (x<925 && x > 825 && y > 100 && y < 200) {
     FLAGPRESSED = !FLAGPRESSED;
     flagButton();
@@ -125,6 +150,7 @@ void mouseClicked() {
   if (x < 925 && x > 825 && y > 250 && y < 350){
     DEFLAG = !DEFLAG;
   }
+  
   if (x < 800 && END == false) {
 
     //place flag
