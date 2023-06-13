@@ -92,3 +92,24 @@ fixed bugs with the winner method (made it so that deflagging an empty tile does
 
 ## June 9
 finally debugged Giridhar's dig method and got it to work i hope. made it so that after you press a mine, the remaining mines appearas dark tiles, but flagged mines stay flagged. also fixed borders, and successfully got the minecounter to work.
+
+
+# Dev Log
+I. Our working features:
+- pressing on a tile reveals the number of surrounding mines
+- our flag button places a flag on a tile. You cannot place a flag on an already revealed tile
+- our deflag button removes a flag from a tile. You cannot deflag on a number.
+- pressing in a big open space opens up the surrounding neighbors as long as they aren't mines
+- the new game button starts a new game
+- the flags left on the bottom righthand corner of the screen correctly shows how many flags there are left to place (it also counts flags that are incorrectly placed). The number goes up if you deflag as well
+- the difficulty button toggles between easy medium and hard
+- the hint button reveals one tile or if the tile revealed has zero neighbors, the dig method  runs and it reveals its surrounding tiles as well
+- If you press on a mine, your the mine you pressed appears with an X over it and after a couple of seconds, the rest of the mines on the board are revealed in dark gray.
+- When you correctly flag all the mines, a winner screen appears. If you place the correct number of flags but not in the right spots, this does not appear.
+
+II. Bugs:
+- when you press on a mine and the rest of the mines are revealed, the number tiles you pressed on are shown in a ginormous font size.
+- after you press on a mine and the end screen appears, you can continue to play the game
+
+II. Helpful rsources
+- your website
